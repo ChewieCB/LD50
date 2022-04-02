@@ -7,13 +7,13 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var engine_power = 800
+export var engine_power = 850
 export var acceleration = Vector2.ZERO
-export var friction = -1.4
-export var drag = -0.001
+export var friction = -0.3
+export var drag = -0.002
 #
 export var braking_power = -450
-export var handbrake_power = -150
+export var handbrake_power = -200
 export var max_speed_reverse = 450
 #
 export var slip_speed = 300  # Speed where traction is reduced
@@ -25,8 +25,8 @@ export var bounce_speed = 250 # Speed at which collisions cause the player to bo
 
 
 export var wheel_base = 70
-export var steering_angle_high = 66
-export var steering_angle_low = 35
+export var steering_angle_high = 45
+export var steering_angle_low = 30
 var steering_angle = steering_angle_low
 var steer_direction
 
@@ -115,7 +115,7 @@ func get_input():
 	if Input.is_action_pressed("move_down"):
 		acceleration = _actor.transform.x * braking_power
 	elif Input.is_action_pressed("handbrake"):
-		if velocity.length() > slip_speed:
+		if velocity.length() > 0:
 			steering_angle = lerp(steering_angle, steering_angle_high, 0.2)
 			acceleration = _actor.transform.x * handbrake_power
 			friction = lerp(friction, -0.4, 0.5)
