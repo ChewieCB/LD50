@@ -28,6 +28,7 @@ func activate_new_delivery_point():
 	# Remove existing delivery point
 	if current_delivery_point:
 		current_delivery_point.set_active(false)
+		current_delivery_point.set_can_deliver(false)
 		eligible_delivery_points.erase(current_delivery_point)
 	
 	# Pick a random delivery point to activate
