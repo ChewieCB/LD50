@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/sprites/player/bike_1_left_1.png" type="Texture" id=1]
 [ext_resource path="res://src/characters/player/player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sprites/player/bike_1_no_exhaust.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/player/exhaust.png" type="Texture" id=9]
 [ext_resource path="res://src/characters/player/states/drifting.gd" type="Script" id=10]
+[ext_resource path="res://src/characters/utils/show_reward.tres" type="Animation" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.0
@@ -98,16 +99,22 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 6 ) ]
 }
 
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/fonts/PixelSmall_v2.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = SubResource( 5 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
 scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="ExhaustSprite" type="Sprite" parent="."]
-position = Vector2( 0, 6 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
@@ -142,7 +149,7 @@ anchor_bottom = 0.596
 margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
-margin_bottom = -16.0
+margin_bottom = 70.0
 text = "State"
 align = 1
 valign = 1
@@ -155,3 +162,21 @@ zoom = Vector2( 2, 2 )
 anims/idle = SubResource( 2 )
 anims/left = SubResource( 3 )
 anims/right = SubResource( 4 )
+anims/show_reward = ExtResource( 11 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RewardLabel" type="Label" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -22.0
+margin_top = -20.0
+margin_right = 22.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 6 )
+text = "+$100"

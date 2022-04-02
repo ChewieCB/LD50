@@ -102,6 +102,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CashCounter" parent="MarginContainer/GridContainer/CenterContainer9" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 92.0
 margin_top = 45.0
 margin_right = 92.0
