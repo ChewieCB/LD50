@@ -47,14 +47,14 @@ margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer"]
+[node name="OrganButton1" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 20.0
@@ -62,13 +62,13 @@ margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer"]
 margin_right = 100.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer/CenterContainer"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer/CenterContainer"]
 margin_left = 31.0
 margin_right = 69.0
 margin_bottom = 28.0
@@ -77,14 +77,14 @@ text = "+1.00"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer"]
 margin_top = 32.0
 margin_right = 100.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer/CenterContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer/CenterContainer2"]
 margin_left = 30.0
 margin_right = 70.0
 margin_bottom = 28.0
@@ -106,14 +106,14 @@ margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2"]
+[node name="OrganButton2" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 20.0
@@ -121,13 +121,13 @@ margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer"]
 margin_right = 100.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer/CenterContainer"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer/CenterContainer"]
 margin_left = 31.0
 margin_right = 69.0
 margin_bottom = 28.0
@@ -136,14 +136,14 @@ text = "+1.30"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer"]
 margin_top = 32.0
 margin_right = 100.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer/CenterContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer/CenterContainer2"]
 margin_left = 30.0
 margin_right = 70.0
 margin_bottom = 28.0
@@ -165,14 +165,14 @@ margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3"]
+[node name="OrganButton3" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 20.0
@@ -180,13 +180,13 @@ margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer"]
 margin_right = 100.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer/CenterContainer"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer/CenterContainer"]
 margin_left = 29.0
 margin_right = 71.0
 margin_bottom = 28.0
@@ -195,14 +195,14 @@ text = "+2.00"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer"]
 margin_top = 32.0
 margin_right = 100.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer/CenterContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer/CenterContainer2"]
 margin_left = 27.0
 margin_right = 73.0
 margin_bottom = 28.0

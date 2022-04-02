@@ -2,7 +2,6 @@ extends Node2D
 
 
 var delivery_points
-onready var timer = $Timer
 
 var current_delivery_point
 
@@ -10,11 +9,10 @@ var current_delivery_point
 func _ready():
 	yield(owner, "ready")
 	delivery_points = get_children()
-	delivery_points.erase(timer)
 	
 	# Connect the delivered signal
 	for point in delivery_points:
-		point.connect("delivered", self, "activate_new_delivery_point")
+		point.connect("delivered", self, "delivery_completed")
 	
 	# Activate the initial delivery point
 	activate_new_delivery_point()
@@ -38,5 +36,10 @@ func activate_new_delivery_point():
 	current_delivery_point = new_delivery_point
 
 
-#func _on_Timer_timeout():
-#	activate_new_delivery_point()
+func delivery_completed():
+	# Generate an amount of money to give the player
+	randomize()
+	var reward = int(rand_range(30, 80))
+	MoneyManager.current_money += reward
+	
+	activate_new_delivery_point()
