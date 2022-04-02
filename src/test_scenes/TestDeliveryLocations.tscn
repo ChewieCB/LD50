@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test_scenes/TestTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/delivery/DeliveryPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/delivery/DeliveryManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MainUI.tscn" type="PackedScene" id=5]
 
 [node name="TestPlayerMovement" type="Node2D"]
 
@@ -110,3 +111,7 @@ rotation = -1.5708
 [node name="DeliveryPoint25" parent="DeliveryManager2" instance=ExtResource( 3 )]
 position = Vector2( 1040, 240 )
 rotation = 1.5708
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainUI" parent="CanvasLayer" instance=ExtResource( 5 )]

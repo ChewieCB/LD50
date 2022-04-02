@@ -1,13 +1,9 @@
 extends State
-# Basic state when the player is moving around until jumping or lack of input
-
-export var max_speed = 300
-export var move_speed = 150
 
 
 func enter(_msg: Dictionary = {}):
 	_parent.enter()
-	_actor.exhaust_sprite.visible = true
+	_actor.exhaust_sprite.visible = false
 
 
 func unhandled_input(event: InputEvent):
@@ -23,6 +19,9 @@ func physics_process(delta: float):
 		_actor.animation_player.play("right")
 	else:
 		_actor.animation_player.play("idle")
+	
+	if Input.is_action_just_released("handbrake"):
+		_state_machine.transition_to("Movement/Moving")
 	
 	# Idle
 	if _parent.input_direction == Vector2.ZERO:

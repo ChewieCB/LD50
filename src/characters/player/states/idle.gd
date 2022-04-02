@@ -7,6 +7,7 @@ In the Idle state a character will... TODO
 
 func enter(_msg: Dictionary = {}):
 	_parent.enter()
+	_actor.exhaust_sprite.visible = false
 
 
 func unhandled_input(event: InputEvent):
