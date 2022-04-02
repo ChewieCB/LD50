@@ -7,6 +7,7 @@ onready var animation_player = $AnimationPlayer
 
 func _ready():
 	MoneyManager.connect("reward", self, "show_reward")
+	MoneyManager.connect("purchase", self, "subtract_purchase")
 
 
 func _process(_delta):
@@ -15,5 +16,11 @@ func _process(_delta):
 
 func show_reward(value):
 	# Make the reward amount raise above the players head
-	reward_label.text = "$%s" % value
+	reward_label.text = "+$%s" % value
+	animation_player.play("show_reward")
+
+
+func subtract_purchase(value):
+	# Make the reward amount raise above the players head
+	reward_label.text = "-$%s" % value
 	animation_player.play("show_reward")

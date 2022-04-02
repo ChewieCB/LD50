@@ -7,14 +7,14 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var engine_power = 850
+export var engine_power = 750
 export var acceleration = Vector2.ZERO
 export var friction = -0.3
 export var drag = -0.002
 #
 export var braking_power = -450
 export var handbrake_power = -200
-export var max_speed_reverse = 450
+export var max_speed_reverse = 250
 #
 export var slip_speed = 300  # Speed where traction is reduced
 export var traction_drift = 0.01 # Drifting traction
@@ -55,8 +55,9 @@ func physics_process(delta: float):
 	elif Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("add_time"):
-		CountdownTimer._add_time(30)
+	# DEBUG
+#	if Input.is_action_just_pressed("add_time"):
+#		CountdownTimer._add_time(30)
 	
 	if Input.is_action_just_pressed("kill_engine"):
 		GlobalFlags.IS_PLAYER_CONTROLLABLE = !GlobalFlags.IS_PLAYER_CONTROLLABLE
@@ -74,6 +75,7 @@ func physics_process(delta: float):
 		if collision:
 			# Turn off the engine for a second
 			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
+			_actor.exhaust_sprite.visible = false
 			velocity = velocity.bounce(collision.normal) * 0.6
 			# Wait a bit and turn the engine back on
 			yield(get_tree().create_timer(0.6),"timeout")
@@ -87,6 +89,7 @@ func physics_process(delta: float):
 		if velocity.length() > bounce_speed:
 			# Turn off the engine for a second
 			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
+			_actor.exhaust_sprite.visible = false
 			velocity = velocity.bounce(collision.normal) * 0.6
 			# Wait a bit and turn the engine back on
 			yield(get_tree().create_timer(0.6),"timeout")
@@ -97,6 +100,7 @@ func physics_process(delta: float):
 
 func get_input():
 	if not GlobalFlags.IS_PLAYER_CONTROLLABLE:
+		_actor.exhaust_sprite.visible = false
 		return
 	
 	input_direction = Vector2(
@@ -143,6 +147,9 @@ func apply_friction():
 
 
 func calculate_steering(delta):
+	if not GlobalFlags.IS_PLAYER_CONTROLLABLE:
+		return
+	
 	var rear_wheel = _actor.position - _actor.transform.x * wheel_base / 2.0
 	var front_wheel = _actor.position + _actor.transform.x * wheel_base / 2.0
 	rear_wheel += velocity * delta

@@ -1,5 +1,7 @@
 extends Control
 
+signal game_over
+
 onready var timer = $Timer
 onready var label = $CountdownLabel
 
@@ -29,4 +31,6 @@ func add_time(value):
 
 
 func _on_Timer_timeout():
-	print("Game over!")
+	timer.stop()
+	self.visible = false
+	CountdownTimer.game_over()
