@@ -55,6 +55,9 @@ func physics_process(delta: float):
 	elif Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
+	if Input.is_action_just_pressed("add_time"):
+		CountdownTimer._add_time(30)
+	
 	if Input.is_action_just_pressed("kill_engine"):
 		GlobalFlags.IS_PLAYER_CONTROLLABLE = !GlobalFlags.IS_PLAYER_CONTROLLABLE
 	
@@ -90,7 +93,6 @@ func physics_process(delta: float):
 			GlobalFlags.IS_PLAYER_CONTROLLABLE = true
 		else:
 			velocity = velocity.slide(collision.normal)
-
 
 
 func get_input():

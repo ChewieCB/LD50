@@ -38,15 +38,19 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LD50 Prep"
+config/name="LD50"
 config/icon="res://icon.png"
 
 [autoload]
 
 GlobalFlags="*res://src/utils/GlobalFlags.gd"
+MoneyManager="*res://src/utils/MoneyManager.gd"
+CountdownTimer="*res://src/utils/CountdownTimer.gd"
 
 [display]
 
+window/size/width=640
+window/size/height=360
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -95,6 +99,16 @@ kill_engine={
 interact={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+add_time={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shop={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

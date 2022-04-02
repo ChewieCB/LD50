@@ -1,0 +1,257 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/ui/organ_shop.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/PixelSmall_v2.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = SubResource( 1 )
+
+[node name="OrganShop" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 300.0
+margin_top = 250.0
+margin_right = 724.0
+margin_bottom = 350.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer/CenterContainer"]
+margin_left = 31.0
+margin_right = 69.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "+1.00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer"]
+margin_top = 32.0
+margin_right = 100.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/Button/VBoxContainer/CenterContainer2"]
+margin_left = 30.0
+margin_right = 70.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "$500"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 104.0
+margin_right = 104.0
+margin_bottom = 100.0
+size_flags_horizontal = 7
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 208.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer/CenterContainer"]
+margin_left = 31.0
+margin_right = 69.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "+1.30"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer"]
+margin_top = 32.0
+margin_right = 100.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/Button/VBoxContainer/CenterContainer2"]
+margin_left = 30.0
+margin_right = 70.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "$750"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 212.0
+margin_right = 212.0
+margin_bottom = 100.0
+size_flags_horizontal = 7
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 216.0
+margin_right = 316.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer/CenterContainer"]
+margin_left = 29.0
+margin_right = 71.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "+2.00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer"]
+margin_top = 32.0
+margin_right = 100.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/Button/VBoxContainer/CenterContainer2"]
+margin_left = 27.0
+margin_right = 73.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "$1000"
+align = 1
+valign = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 320.0
+margin_right = 320.0
+margin_bottom = 100.0
+size_flags_horizontal = 7
+
+[node name="CenterContainer4" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+margin_left = 324.0
+margin_right = 424.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button/VBoxContainer/CenterContainer"]
+margin_left = 25.0
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
+text = "IMAGE"
+align = 1
+valign = 1
