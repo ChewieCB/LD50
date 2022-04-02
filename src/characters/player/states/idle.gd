@@ -6,7 +6,6 @@ In the Idle state a character will... TODO
 
 
 func enter(_msg: Dictionary = {}):
-	_parent.velocity = Vector2.ZERO
 	_parent.enter()
 
 

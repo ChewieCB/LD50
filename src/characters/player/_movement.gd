@@ -81,11 +81,11 @@ func get_input():
 		acceleration = _actor.transform.x * braking_power
 	elif Input.is_action_pressed("handbrake"):
 		if velocity.length() > slip_speed:
-			steering_angle = 40
+			steering_angle = lerp(steering_angle, 40, 0.2)
 			acceleration = _actor.transform.x * handbrake_power
 			friction = lerp(friction, -0.4, 0.5)
 		else:
-			steering_angle = 22
+			steering_angle = lerp(steering_angle, 22, 0.5)
 			friction = lerp(friction, -1.4, 0.5)
 	else:
 		steering_angle = 22
