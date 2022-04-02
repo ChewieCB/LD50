@@ -7,23 +7,27 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var engine_power = 1000
+export var engine_power = 850
 export var acceleration = Vector2.ZERO
-export var friction = -1.4
-export var drag = -0.001
+export var friction = -0.3
+export var drag = -0.002
 #
 export var braking_power = -450
-export var handbrake_power = -150
+export var handbrake_power = -200
 export var max_speed_reverse = 450
 #
 export var slip_speed = 300  # Speed where traction is reduced
 export var traction_drift = 0.01 # Drifting traction
 export var traction_fast = 0.1  # High-speed traction
 export var traction_slow = 0.7  # Low-speed traction
+#
+export var bounce_speed = 250 # Speed at which collisions cause the player to bounce off
 
 
 export var wheel_base = 70
-export var steering_angle = 22
+export var steering_angle_high = 45
+export var steering_angle_low = 30
+var steering_angle = steering_angle_low
 var steer_direction
 
 var velocity := Vector2.ZERO
@@ -51,6 +55,9 @@ func physics_process(delta: float):
 	elif Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
+	if Input.is_action_just_pressed("kill_engine"):
+		GlobalFlags.IS_PLAYER_CONTROLLABLE = !GlobalFlags.IS_PLAYER_CONTROLLABLE
+	
 	# Movement
 	acceleration = Vector2.ZERO
 	get_input()
@@ -58,10 +65,38 @@ func physics_process(delta: float):
 	calculate_steering(delta)
 	# Rotate to move up instead of right
 	velocity += acceleration * delta
-	velocity = _actor.move_and_slide(velocity)
+	# If we're going fast, bounce off the wall
+	if velocity.length() > bounce_speed:
+		var collision = _actor.move_and_collide(velocity * delta)
+		if collision:
+			# Turn off the engine for a second
+			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
+			velocity = velocity.bounce(collision.normal) * 0.6
+			# Wait a bit and turn the engine back on
+			yield(get_tree().create_timer(0.6),"timeout")
+			GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+	else:
+		velocity = _actor.move_and_slide(velocity)
+	
+	var collision = _actor.move_and_collide(velocity * delta)
+	if collision:
+		# If we're going fast, bounce off the wall
+		if velocity.length() > bounce_speed:
+			# Turn off the engine for a second
+			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
+			velocity = velocity.bounce(collision.normal) * 0.6
+			# Wait a bit and turn the engine back on
+			yield(get_tree().create_timer(0.6),"timeout")
+			GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+		else:
+			velocity = velocity.slide(collision.normal)
+
 
 
 func get_input():
+	if not GlobalFlags.IS_PLAYER_CONTROLLABLE:
+		return
+	
 	input_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -80,15 +115,15 @@ func get_input():
 	if Input.is_action_pressed("move_down"):
 		acceleration = _actor.transform.x * braking_power
 	elif Input.is_action_pressed("handbrake"):
-		if velocity.length() > slip_speed:
-			steering_angle = 40
+		if velocity.length() > 0:
+			steering_angle = lerp(steering_angle, steering_angle_high, 0.2)
 			acceleration = _actor.transform.x * handbrake_power
 			friction = lerp(friction, -0.4, 0.5)
 		else:
-			steering_angle = 22
+			steering_angle = lerp(steering_angle, steering_angle_low, 0.5)
 			friction = lerp(friction, -1.4, 0.5)
 	else:
-		steering_angle = 22
+		steering_angle = steering_angle_low
 		friction = lerp(friction, -1.4, 0.5)
 
 
@@ -109,6 +144,7 @@ func calculate_steering(delta):
 	front_wheel += velocity.rotated(steer_angle) * delta
 	
 	var new_heading = (front_wheel - rear_wheel).normalized()
+	
 	var traction = traction_slow
 	if velocity.length() > slip_speed:
 		if Input.is_action_pressed("handbrake"):
