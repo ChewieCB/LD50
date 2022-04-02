@@ -9,7 +9,6 @@ var current_delivery_point
 func _ready():
 	yield(owner, "ready")
 	delivery_points = get_children()
-	delivery_points.erase(timer)
 	
 	# Connect the delivered signal
 	for point in delivery_points:
