@@ -112,10 +112,13 @@ func get_input():
 	
 	if Input.is_action_pressed("move_up"):
 		acceleration = _actor.transform.x * engine_power
+		_actor.exhaust_sprite.visible = true
 	if Input.is_action_pressed("move_down"):
 		acceleration = _actor.transform.x * braking_power
+		_actor.exhaust_sprite.visible = false
 	elif Input.is_action_pressed("handbrake"):
 		if velocity.length() > 0:
+			_state_machine.transition_to("Movement/Drifting")
 			steering_angle = lerp(steering_angle, steering_angle_high, 0.2)
 			acceleration = _actor.transform.x * handbrake_power
 			friction = lerp(friction, -0.4, 0.5)
