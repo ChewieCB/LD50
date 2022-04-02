@@ -51,6 +51,9 @@ func physics_process(delta: float):
 	elif Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
+	if Input.is_action_just_pressed("kill_engine"):
+		GlobalFlags.IS_PLAYER_CONTROLLABLE = !GlobalFlags.IS_PLAYER_CONTROLLABLE
+	
 	# Movement
 	acceleration = Vector2.ZERO
 	get_input()
@@ -62,6 +65,9 @@ func physics_process(delta: float):
 
 
 func get_input():
+	if not GlobalFlags.IS_PLAYER_CONTROLLABLE:
+		return
+	
 	input_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
