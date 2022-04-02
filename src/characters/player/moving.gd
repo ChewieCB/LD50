@@ -7,8 +7,6 @@ export var move_speed = 150
 
 func enter(_msg: Dictionary = {}):
 	_parent.enter()
-	_parent.max_speed = max_speed
-	_parent.move_speed = move_speed
 
 
 func unhandled_input(event: InputEvent):
