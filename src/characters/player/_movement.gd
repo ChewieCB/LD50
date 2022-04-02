@@ -7,11 +7,28 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var max_speed = 300
-export var move_speed = 150
+export var engine_power = 1000
+export var acceleration = Vector2.ZERO
+export var friction = -1.4
+export var drag = -0.001
+#
+export var braking_power = -450
+export var handbrake_power = -150
+export var max_speed_reverse = 450
+#
+export var slip_speed = 300  # Speed where traction is reduced
+export var traction_drift = 0.01 # Drifting traction
+export var traction_fast = 0.1  # High-speed traction
+export var traction_slow = 0.7  # Low-speed traction
+
+
+export var wheel_base = 70
+export var steering_angle = 22
+var steer_direction
 
 var velocity := Vector2.ZERO
 var input_direction = Vector2.ZERO
+var steer_angle
 
 
 #func enter(_msg: Dictionary = {}):
@@ -35,28 +52,76 @@ func physics_process(delta: float):
 		get_tree().quit()
 	
 	# Movement
-#	if GlobalFlags.PLAYER_CONTROLS_ACTIVE:
-	input_direction = get_input_direction()
-#	else:
-#		input_direction = Vector2.ZERO
-	
-	velocity = calculate_velocity(velocity, input_direction, delta)
+	acceleration = Vector2.ZERO
+	get_input()
+	apply_friction()
+	calculate_steering(delta)
+	# Rotate to move up instead of right
+	velocity += acceleration * delta
 	velocity = _actor.move_and_slide(velocity)
 
 
-func get_input_direction():
-	return Vector2(
+func get_input():
+	input_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
 
-
-func calculate_velocity(velocity_current: Vector2, input_dir: Vector2, delta: float):
-	var velocity_new = input_dir * move_speed
-	if velocity_new.length() > max_speed:
-		velocity_new = velocity_new.normalized() * max_speed
+	var turn = 0
+	if Input.is_action_pressed("move_right"):
+		turn += 1
+	if Input.is_action_pressed("move_left"):
+		turn -= 1
 	
-	return velocity_new
+	steer_angle = turn * deg2rad(steering_angle)
+	
+	if Input.is_action_pressed("move_up"):
+		acceleration = _actor.transform.x * engine_power
+	if Input.is_action_pressed("move_down"):
+		acceleration = _actor.transform.x * braking_power
+	elif Input.is_action_pressed("handbrake"):
+		if velocity.length() > slip_speed:
+			steering_angle = 40
+			acceleration = _actor.transform.x * handbrake_power
+			friction = lerp(friction, -0.4, 0.5)
+		else:
+			steering_angle = 22
+			friction = lerp(friction, -1.4, 0.5)
+	else:
+		steering_angle = 22
+		friction = lerp(friction, -1.4, 0.5)
+
+
+func apply_friction():
+	if velocity.length() < 5:
+		velocity = Vector2.ZERO
+	var friction_force = velocity * friction
+	var drag_force = velocity * velocity.length() * drag
+	if velocity.length() < 100:
+		friction_force *= 3
+	acceleration += drag_force + friction_force
+
+
+func calculate_steering(delta):
+	var rear_wheel = _actor.position - _actor.transform.x * wheel_base / 2.0
+	var front_wheel = _actor.position + _actor.transform.x * wheel_base / 2.0
+	rear_wheel += velocity * delta
+	front_wheel += velocity.rotated(steer_angle) * delta
+	
+	var new_heading = (front_wheel - rear_wheel).normalized()
+	var traction = traction_slow
+	if velocity.length() > slip_speed:
+		if Input.is_action_pressed("handbrake"):
+			traction = traction_drift
+		else:
+			traction = traction_fast
+	var d = new_heading.dot(velocity.normalized())
+	if d > 0:
+		velocity = velocity.linear_interpolate(new_heading * velocity.length(), traction)
+	if d < 0:
+		 velocity = -new_heading * min(velocity.length(), max_speed_reverse)
+	
+	_actor.rotation = new_heading.angle()
 
 
 
