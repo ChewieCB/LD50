@@ -8,12 +8,12 @@
 	"name": "Test Character",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": 0,
-	"offset_y": 0,
+	"offset_x": 100,
+	"offset_y": 100,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://assets/sprites/npc_portraits/portrait_1.png"
+			"path": ""
 		}
 	],
 	"scale": 100,
