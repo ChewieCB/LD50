@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://assets/sprites/npc_portraits/portrait_1.png"
 		}
 	],
 	"scale": 100,
