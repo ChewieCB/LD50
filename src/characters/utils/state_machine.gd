@@ -46,6 +46,10 @@ func transition_to(target_state_path: String, msg: Dictionary = {}):
 	
 	var target_state := get_node(target_state_path)
 	
+	# Don't re-enter the state you're currently in
+	if target_state == previous_state:
+		return
+	
 	state.exit()
 	self.state = target_state
 	state.enter(msg)

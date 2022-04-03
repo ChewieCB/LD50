@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/accel.wav-7c225f5f8dadd298b1e084120bdc44bc.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/accel.wav"
+dest_files=[ "res://.import/accel.wav-7c225f5f8dadd298b1e084120bdc44bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

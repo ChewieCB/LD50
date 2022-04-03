@@ -7,6 +7,7 @@ export var move_speed = 150
 
 func enter(_msg: Dictionary = {}):
 	_parent.enter()
+	_actor.audio_manager.transition_to(_actor.audio_manager.States.IDLE)
 
 
 func unhandled_input(event: InputEvent):

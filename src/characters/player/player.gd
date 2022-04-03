@@ -2,6 +2,7 @@ extends Character
 class_name Player
 
 onready var animation_player = $AnimationPlayer
+onready var audio_manager = $AudioManager
 onready var exhaust_sprite = $ExhaustSprite
 onready var reward = $Control/RewardLabel
 

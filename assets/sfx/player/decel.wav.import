@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/decel.wav-c873e6161bb69fb4568be91cd8862289.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/decel.wav"
+dest_files=[ "res://.import/decel.wav-c873e6161bb69fb4568be91cd8862289.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/topspeed_loop.wav-f98c4d920c86ce0d85e188641766dcb8.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/topspeed_loop.wav"
+dest_files=[ "res://.import/topspeed_loop.wav-f98c4d920c86ce0d85e188641766dcb8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0

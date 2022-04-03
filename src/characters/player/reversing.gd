@@ -3,8 +3,8 @@ extends State
 
 func enter(_msg: Dictionary = {}):
 	_parent.enter()
+#	_actor.audio_manager.transition_to(_actor.audio_manager.States.DECELERATING)
 	_actor.exhaust_sprite.visible = false
-	_actor.audio_manager.transition_to(_actor.audio_manager.States.DRIFTING)
 
 
 func unhandled_input(event: InputEvent):
@@ -13,16 +13,6 @@ func unhandled_input(event: InputEvent):
 
 func physics_process(delta: float):
 	_parent.physics_process(delta)
-	
-	if Input.is_action_pressed("move_left"):
-			_actor.animation_player.play("left")
-	elif Input.is_action_pressed("move_right"):
-		_actor.animation_player.play("right")
-	else:
-		_actor.animation_player.play("idle")
-	
-	if Input.is_action_just_released("handbrake"):
-		_state_machine.transition_to("Movement/Moving")
 	
 	# Idle
 	if _parent.input_direction == Vector2.ZERO:
@@ -37,3 +27,4 @@ func _update_sfx():
 	# Only run if we are currently in the running state
 	if _state_machine.state != self:
 		return
+

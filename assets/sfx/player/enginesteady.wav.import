@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enginesteady.wav-0f427b0bac647fb707105f7ab45a0028.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/enginesteady.wav"
+dest_files=[ "res://.import/enginesteady.wav-0f427b0bac647fb707105f7ab45a0028.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=true
+compress/mode=0
