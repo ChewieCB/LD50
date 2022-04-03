@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/test_scenes/delivery_manager.gd" type="Script" id=1]
+[ext_resource path="res://src/delivery/delivery_manager.gd" type="Script" id=1]
 [ext_resource path="res://src/delivery/audio_manager.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/delivery/well_done.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sfx/delivery/alert.wav" type="AudioStream" id=4]
