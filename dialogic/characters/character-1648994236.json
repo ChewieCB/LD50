@@ -8,8 +8,8 @@
 	"name": "Test Character",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": 0,
-	"offset_y": 0,
+	"offset_x": 100,
+	"offset_y": 100,
 	"portraits": [
 		{
 			"name": "Default",

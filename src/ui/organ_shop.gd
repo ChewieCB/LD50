@@ -1,7 +1,7 @@
 extends Control
 
 export var time_values = [1.00, 1.50, 2.00]
-export var cost_values = [250, 500, 750]
+export var cost_values = [150, 350, 750]
 
 onready var audio_manager = $AudioManager
 
@@ -35,7 +35,7 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("shop"):
+	if Input.is_action_just_pressed("interact") and GlobalFlags.CAN_SHOP:
 		if GlobalFlags.IS_PLAYER_CONTROLLABLE:
 			toggle_shop()
 	

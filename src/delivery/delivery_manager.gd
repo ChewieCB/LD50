@@ -2,6 +2,9 @@ extends Node2D
 
 onready var audio_manager = $AudioManager
 
+export var delivery_hub_path := NodePath()
+onready var delivery_hub = get_node(delivery_hub_path)
+
 var delivery_points
 var current_delivery_point
 
@@ -15,9 +18,16 @@ func _ready():
 	for point in delivery_points:
 		point.connect("delivered", self, "delivery_completed")
 	
-	# Activate the initial delivery point
-	activate_new_delivery_point()
+	# Connect the pickup signal
+	delivery_hub.connect("pickup", self, "generate_pickup")
 
+
+func generate_pickup():
+	# Get a delivery point
+	activate_new_delivery_point()
+	# Pick an organ and delivery stats
+	# TODO
+	
 
 func activate_new_delivery_point():
 	randomize()
@@ -34,7 +44,8 @@ func activate_new_delivery_point():
 	new_delivery_point.set_active(true)
 	current_delivery_point = new_delivery_point
 	# SFX
-	yield(audio_manager.sfx_player_1, "finished")
+	if audio_manager.sfx_player_1.is_playing():
+		yield(audio_manager.sfx_player_1, "finished")
 	audio_manager.transition_to(audio_manager.States.NEW_DELIVERY)
 
 
@@ -51,4 +62,6 @@ func delivery_completed(point):
 	
 	yield(point.completion_dialog, "timeline_end")
 	current_delivery_point.set_active(false)
-	activate_new_delivery_point()
+	
+	# Set a new pickup
+	delivery_hub.new_delivery()
