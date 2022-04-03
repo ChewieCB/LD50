@@ -10,6 +10,7 @@ extents = Vector2( 96, 56 )
 extents = Vector2( 16, 16 )
 
 [node name="DeliveryPoint" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="DeliveryZone" type="Area2D" parent="."]
