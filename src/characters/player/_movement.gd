@@ -24,7 +24,7 @@ export var traction_slow = 0.7  # Low-speed traction
 export var bounce_speed = 250 # Speed at which collisions cause the player to bounce off
 
 
-export var wheel_base = 50
+export var wheel_base = 55
 export var steering_angle_high = 45
 export var steering_angle_low = 30
 var steering_angle = steering_angle_low
