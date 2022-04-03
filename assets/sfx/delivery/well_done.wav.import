@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/accel.wav-7c225f5f8dadd298b1e084120bdc44bc.sample"
+path="res://.import/well_done.wav-933f5a4fbee5528f5601a9dd673ae8b8.sample"
 
 [deps]
 
-source_file="res://assets/sfx/player/accel.wav"
-dest_files=[ "res://.import/accel.wav-7c225f5f8dadd298b1e084120bdc44bc.sample" ]
+source_file="res://assets/sfx/delivery/well_done.wav"
+dest_files=[ "res://.import/well_done.wav-933f5a4fbee5528f5601a9dd673ae8b8.sample" ]
 
 [params]
 

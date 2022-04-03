@@ -234,5 +234,3 @@ bus = "Player SFX"
 bus = "Player SFX"
 
 [node name="Tween" type="Tween" parent="AudioManager"]
-
-[node name="AudioAnimationPlayer" type="AnimationPlayer" parent="AudioManager"]

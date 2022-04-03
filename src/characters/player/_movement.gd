@@ -151,6 +151,8 @@ func apply_friction():
 	var drag_force = velocity * velocity.length() * drag
 	if velocity.length() < 100:
 		friction_force *= 3
+	if Input.is_action_pressed("handbrake"):
+		friction_force *= 0.6
 	acceleration += drag_force + friction_force
 
 

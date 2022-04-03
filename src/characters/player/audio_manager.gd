@@ -23,11 +23,11 @@ enum PlayerIDs {
 	ACCEL,
 	DECEL,
 	DRIFT,
-	CRASH
+	CRASH,
+	BREAKTHROUGH
 }
 
 onready var tween = $Tween
-onready var sfx_anim_player = $AudioAnimationPlayer
 onready var sfx_players = get_children()
 
 var engine_player
@@ -35,11 +35,11 @@ var accel_player
 var decel_player
 var drift_player
 var crash_player
+var breakthrough_player
 
 
 func _ready():
 	sfx_players.erase(tween)
-	sfx_players.erase(sfx_anim_player)
 	
 	engine_player = sfx_players[PlayerIDs.ENGINE_LOOP]
 	engine_player.stream = engine_sfx
@@ -62,6 +62,9 @@ func _ready():
 	
 	crash_player = sfx_players[PlayerIDs.CRASH]
 	crash_player.stream = crash_sfx
+	
+	breakthrough_player = sfx_players[PlayerIDs.BREAKTHROUGH]
+	breakthrough_player.stream = breakthrough_sfx
 
 
 #func _physics_process(_delta):
@@ -169,10 +172,12 @@ func play_audio(state):
 			)
 			tween.start()
 			yield(tween, "tween_all_completed")
+			# TODO - transition to high speed engine noise here
 			engine_player.volume_db = -16
 			engine_player.pitch_scale = 1.5
 		States.CRASH:
 			crash_player.play()
+			# TODO - add engine stutter to start up
 			tween.interpolate_property(
 				engine_player,
 				"volume_db",

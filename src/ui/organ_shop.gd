@@ -3,6 +3,8 @@ extends Control
 export var time_values = [1.00, 1.50, 2.00]
 export var cost_values = [250, 500, 750]
 
+onready var audio_manager = $AudioManager
+
 onready var button_1 = $MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1
 onready var button_2 = $MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2
 onready var button_3 = $MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3
@@ -52,11 +54,17 @@ func toggle_shop():
 func purchase_low():
 	MoneyManager.current_money -= cost_values[0]
 	CountdownTimer._add_time(60 * time_values[0])
+	audio_manager.transition_to(audio_manager.States.PURCHASE)
+	toggle_shop()
 
 func purchase_mid():
 	MoneyManager.current_money -= cost_values[1]
 	CountdownTimer._add_time(60 * time_values[1])
+	audio_manager.transition_to(audio_manager.States.PURCHASE)
+	toggle_shop()
 
 func purchase_high():
 	MoneyManager.current_money -= cost_values[2]
 	CountdownTimer._add_time(60 * time_values[2])
+	audio_manager.transition_to(audio_manager.States.PURCHASE)
+	toggle_shop()
