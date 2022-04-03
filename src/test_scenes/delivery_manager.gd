@@ -26,8 +26,6 @@ func activate_new_delivery_point():
 	
 	# Remove existing delivery point
 	if current_delivery_point:
-		current_delivery_point.set_active(false)
-		current_delivery_point.set_can_deliver(false)
 		eligible_delivery_points.erase(current_delivery_point)
 	
 	# Pick a random delivery point to activate
@@ -40,7 +38,9 @@ func activate_new_delivery_point():
 	audio_manager.transition_to(audio_manager.States.NEW_DELIVERY)
 
 
-func delivery_completed():
+func delivery_completed(point):
+	current_delivery_point.set_can_deliver(false)
+		
 	# Generate an amount of money to give the player
 	randomize()
 	var reward = int(rand_range(30, 80))
@@ -49,4 +49,6 @@ func delivery_completed():
 	# SFX
 	audio_manager.transition_to(audio_manager.States.DELIVERY_COMPLETED)
 	
+	yield(point.completion_dialog, "timeline_end")
+	current_delivery_point.set_active(false)
 	activate_new_delivery_point()

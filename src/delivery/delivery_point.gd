@@ -1,11 +1,12 @@
 extends Node2D
 
-signal delivered
+signal delivered(point)
 
 onready var delivery_zone = $DeliveryZone
 onready var is_active = false setget set_active
 onready var can_deliver = false setget set_can_deliver
 
+var completion_dialog
 
 func _ready():
 	set_active(is_active)
@@ -14,7 +15,17 @@ func _ready():
 func _physics_process(_delta):
 	if can_deliver:
 		if Input.is_action_just_released("interact"):
-			emit_signal("delivered")
+			generate_delivery_dialog()
+			emit_signal("delivered", self)
+
+
+func generate_delivery_dialog():
+	# TODO - generate these randomly based on organ and lines in a csv
+	completion_dialog = Dialogic.start('Test Delivery Text') 
+	add_child(completion_dialog)
+	get_tree().paused = true
+	yield(completion_dialog, "timeline_end")
+	get_tree().paused = false
 
 
 func set_active(value):
