@@ -4,3 +4,7 @@
 .import/track_v0.0.wav-c3a9121245469bbdffb9e4a13bd92994.sample
 
 *.wav
+
+assets/music/track_v0.0.wav.import
+
+builds/0.1/
