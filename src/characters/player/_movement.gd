@@ -24,7 +24,7 @@ export var traction_slow = 0.7  # Low-speed traction
 export var bounce_speed = 250 # Speed at which collisions cause the player to bounce off
 
 
-export var wheel_base = 70
+export var wheel_base = 50
 export var steering_angle_high = 45
 export var steering_angle_low = 30
 var steering_angle = steering_angle_low
@@ -62,6 +62,15 @@ func physics_process(delta: float):
 	if Input.is_action_just_pressed("kill_engine"):
 		GlobalFlags.IS_PLAYER_CONTROLLABLE = !GlobalFlags.IS_PLAYER_CONTROLLABLE
 	
+	# Hacky sprite changing
+	if GlobalFlags.IS_PLAYER_CONTROLLABLE:
+		if Input.is_action_pressed("move_left"):
+				_actor.animation_player.play("left")
+		elif Input.is_action_pressed("move_right"):
+			_actor.animation_player.play("right")
+		else:
+			_actor.animation_player.play("idle")
+	
 	# Movement
 	acceleration = Vector2.ZERO
 	get_input()
@@ -69,17 +78,14 @@ func physics_process(delta: float):
 	calculate_steering(delta)
 	# Rotate to move up instead of right
 	velocity += acceleration * delta
+	
 	# If we're going fast, bounce off the wall
 	if velocity.length() > bounce_speed:
 		var collision = _actor.move_and_collide(velocity * delta)
 		if collision:
 			# Turn off the engine for a second
-			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
-			_actor.exhaust_sprite.visible = false
 			velocity = velocity.bounce(collision.normal) * 0.6
-			# Wait a bit and turn the engine back on
-			yield(get_tree().create_timer(0.6),"timeout")
-			GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+			_state_machine.transition_to("Movement/Crashing")
 	else:
 		velocity = _actor.move_and_slide(velocity)
 	
@@ -88,14 +94,12 @@ func physics_process(delta: float):
 		# If we're going fast, bounce off the wall
 		if velocity.length() > bounce_speed:
 			# Turn off the engine for a second
-			GlobalFlags.IS_PLAYER_CONTROLLABLE = false
-			_actor.exhaust_sprite.visible = false
 			velocity = velocity.bounce(collision.normal) * 0.6
-			# Wait a bit and turn the engine back on
-			yield(get_tree().create_timer(0.6),"timeout")
-			GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+			_state_machine.transition_to("Movement/Crashing")
 		else:
 			velocity = velocity.slide(collision.normal)
+	
+#	print(velocity.length())
 
 
 func get_input():
@@ -118,10 +122,14 @@ func get_input():
 	
 	if Input.is_action_pressed("move_up"):
 		acceleration = _actor.transform.x * engine_power
-		_actor.exhaust_sprite.visible = true
+		if _state_machine.state != _state_machine.get_node("Movement/Drifting"):
+			_state_machine.transition_to("Movement/Accelerating")
 	if Input.is_action_pressed("move_down"):
 		acceleration = _actor.transform.x * braking_power
-		_actor.exhaust_sprite.visible = false
+		if velocity.length() > 0:
+			_state_machine.transition_to("Movement/Decelerating")
+		else:
+			_state_machine.transition_to("Movement/Reversing")
 	elif Input.is_action_pressed("handbrake"):
 		if velocity.length() > 0:
 			_state_machine.transition_to("Movement/Drifting")
@@ -143,6 +151,8 @@ func apply_friction():
 	var drag_force = velocity * velocity.length() * drag
 	if velocity.length() < 100:
 		friction_force *= 3
+	if Input.is_action_pressed("handbrake"):
+		friction_force *= 0.6
 	acceleration += drag_force + friction_force
 
 

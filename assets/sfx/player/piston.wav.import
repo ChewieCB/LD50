@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/piston.wav-c3d09cddbba5031e3a0c1f3e421d2c7d.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/piston.wav"
+dest_files=[ "res://.import/piston.wav-c3d09cddbba5031e3a0c1f3e421d2c7d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/sprites/player/bike_1_left_1.png" type="Texture" id=1]
 [ext_resource path="res://src/characters/player/player.gd" type="Script" id=2]
@@ -11,6 +11,18 @@
 [ext_resource path="res://assets/sprites/player/exhaust.png" type="Texture" id=9]
 [ext_resource path="res://src/characters/player/states/drifting.gd" type="Script" id=10]
 [ext_resource path="res://src/characters/utils/show_reward.tres" type="Animation" id=11]
+[ext_resource path="res://src/characters/player/audio_manager.gd" type="Script" id=12]
+[ext_resource path="res://src/characters/player/accelerating.gd" type="Script" id=13]
+[ext_resource path="res://src/characters/player/decelerating.gd" type="Script" id=14]
+[ext_resource path="res://src/characters/player/reversing.gd" type="Script" id=15]
+[ext_resource path="res://src/characters/playercrashing.gd" type="Script" id=16]
+[ext_resource path="res://assets/sfx/player/piston.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sfx/player/crash_bad.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/sfx/player/breakthrough.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/sfx/player/accel.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/sfx/player/decel.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/sfx/player/topspeed_loop.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/sfx/player/looping_engine_sound.wav" type="AudioStream" id=24]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.0
@@ -142,8 +154,19 @@ script = ExtResource( 6 )
 [node name="Drifting" type="Node" parent="StateMachine/Movement"]
 script = ExtResource( 10 )
 
+[node name="Accelerating" type="Node" parent="StateMachine/Movement"]
+script = ExtResource( 13 )
+
+[node name="Decelerating" type="Node" parent="StateMachine/Movement"]
+script = ExtResource( 14 )
+
+[node name="Reversing" type="Node" parent="StateMachine/Movement"]
+script = ExtResource( 15 )
+
+[node name="Crashing" type="Node" parent="StateMachine/Movement"]
+script = ExtResource( 16 )
+
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.596
@@ -181,3 +204,33 @@ margin_right = 22.0
 margin_bottom = 23.0
 custom_fonts/font = SubResource( 6 )
 text = "+$100"
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource( 12 )
+accel_sfx = ExtResource( 21 )
+breakthrough_sfx = ExtResource( 20 )
+engine_sfx = ExtResource( 24 )
+top_speed_sfx = ExtResource( 23 )
+decel_sfx = ExtResource( 22 )
+drift_sfx = ExtResource( 18 )
+crash_sfx = ExtResource( 19 )
+
+[node name="Player1" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Player2" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Player3" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Player4" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Player5" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Player6" type="AudioStreamPlayer" parent="AudioManager"]
+bus = "Player SFX"
+
+[node name="Tween" type="Tween" parent="AudioManager"]

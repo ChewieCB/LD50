@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/not_good.wav-c7fd83f534ed3bc1f1287b0dc9eb411a.sample"
+
+[deps]
+
+source_file="res://assets/sfx/delivery/not_good.wav"
+dest_files=[ "res://.import/not_good.wav-c7fd83f534ed3bc1f1287b0dc9eb411a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,14 +1,15 @@
 extends Node2D
 
+onready var audio_manager = $AudioManager
 
 var delivery_points
-
 var current_delivery_point
 
 
 func _ready():
 	yield(owner, "ready")
 	delivery_points = get_children()
+	delivery_points.erase(audio_manager)
 	
 	# Connect the delivered signal
 	for point in delivery_points:
@@ -34,6 +35,9 @@ func activate_new_delivery_point():
 	var new_delivery_point = eligible_delivery_points[rand_index]
 	new_delivery_point.set_active(true)
 	current_delivery_point = new_delivery_point
+	# SFX
+	yield(audio_manager.sfx_player_1, "finished")
+	audio_manager.transition_to(audio_manager.States.NEW_DELIVERY)
 
 
 func delivery_completed():
@@ -41,5 +45,8 @@ func delivery_completed():
 	randomize()
 	var reward = int(rand_range(30, 80))
 	MoneyManager.current_money += reward
+	
+	# SFX
+	audio_manager.transition_to(audio_manager.States.DELIVERY_COMPLETED)
 	
 	activate_new_delivery_point()

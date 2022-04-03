@@ -8,3 +8,7 @@
 assets/music/track_v0.0.wav.import
 
 builds/0.1/
+
+*.sample
+
+*.md5
