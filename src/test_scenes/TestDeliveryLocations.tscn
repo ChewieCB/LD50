@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/characters/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test_scenes/TestTilemap.tscn" type="PackedScene" id=2]
@@ -6,8 +6,12 @@
 [ext_resource path="res://src/delivery/DeliveryManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MainUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/delivery/DeliveryHub.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/utils/pathfinding/pathfinding.gd" type="Script" id=7]
+[ext_resource path="res://src/test_scenes/level_test.gd" type="Script" id=8]
+[ext_resource path="res://assets/test_sprites/chevron.png" type="Texture" id=9]
 
 [node name="TestPlayerMovement" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Nav" type="Navigation2D" parent="."]
 
@@ -19,6 +23,10 @@ position = Vector2( 418, 16 )
 
 [node name="DeliveryManager" parent="." instance=ExtResource( 4 )]
 delivery_hub_path = NodePath("../DeliveryHub")
+
+[node name="GPSChevron" type="Sprite" parent="DeliveryManager"]
+visible = false
+texture = ExtResource( 9 )
 
 [node name="DeliveryPoint2" parent="DeliveryManager" instance=ExtResource( 3 )]
 position = Vector2( 1648, 528 )
@@ -117,3 +125,6 @@ position = Vector2( 240, 58 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource( 5 )]
+
+[node name="Pathfinding" type="Node2D" parent="."]
+script = ExtResource( 7 )
