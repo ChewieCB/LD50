@@ -2,6 +2,8 @@ extends Node2D
 
 signal pickup
 
+onready var player = $"../Player"
+
 onready var pickup_zone = $PickupZone
 onready var pickup_zone_sprite = $PickupZone/DeliveryZoneSprite
 onready var shop_zone_sprite = $PickupZone/ShopZoneSprite
@@ -15,6 +17,11 @@ func _ready():
 
 
 func _physics_process(_delta):
+	if pickup_zone.overlaps_body(player) and not pickup_zone_sprite.visible:
+		GlobalFlags.CAN_SHOP = true
+	else:
+		GlobalFlags.CAN_SHOP = false
+	
 	if can_pickup:
 		if Input.is_action_just_released("interact"):
 #			generate_delivery_dialog()
@@ -54,13 +61,9 @@ func _on_PickupZone_body_entered(body):
 	if body is Player:
 		if is_active:
 			set_can_pickup(true)
-			GlobalFlags.CAN_SHOP = false
-		else:
-			GlobalFlags.CAN_SHOP = true
 
 
 func _on_PickupZone_body_exited(body):
 	if body is Player:
-		GlobalFlags.CAN_SHOP = false
 		if is_active:
 			set_can_pickup(false)
