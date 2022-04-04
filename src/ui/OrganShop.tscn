@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui/organ_shop.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/audio_manager.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/delivery/cash.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sprites/npc_portraits/frame.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/npc_portraits/frame_confirm.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/npc_portraits/frame_disabled.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/PixelSmall_v2.ttf"
@@ -15,6 +18,7 @@ font_data = SubResource( 1 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -28,233 +32,344 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 margin_right = 1024.0
 margin_bottom = 600.0
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 300.0
-margin_top = 250.0
-margin_right = 724.0
-margin_bottom = 350.0
+margin_left = 372.0
+margin_top = 252.0
+margin_right = 652.0
+margin_bottom = 348.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_right = 100.0
-margin_bottom = 100.0
+margin_right = 64.0
+margin_bottom = 96.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OrganButton1" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer"]
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer"]
+margin_right = 64.0
+margin_bottom = 96.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 28.0
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 29.0
+margin_right = 35.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="OrganButton1" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 32.0
+margin_right = 64.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 60, 60 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/OrganButton1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -12
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/OrganButton1/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer"]
-margin_right = 100.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer/CenterContainer"]
-margin_left = 31.0
-margin_right = 69.0
-margin_bottom = 28.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/OrganButton1/VBoxContainer/CenterContainer"]
+margin_left = 13.0
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
 text = "+1.00"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer"]
-margin_top = 32.0
-margin_right = 100.0
-margin_bottom = 60.0
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/OrganButton1/VBoxContainer"]
+margin_top = 26.0
+margin_right = 64.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/OrganButton1/VBoxContainer/CenterContainer2"]
-margin_left = 30.0
-margin_right = 70.0
-margin_bottom = 28.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer/VBoxContainer/OrganButton1/VBoxContainer/CenterContainer2"]
+margin_left = 12.0
+margin_top = 5.0
+margin_right = 52.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
 text = "$500"
 align = 1
 valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 104.0
-margin_bottom = 100.0
+margin_left = 68.0
+margin_right = 68.0
+margin_bottom = 96.0
 size_flags_horizontal = 7
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 108.0
-margin_right = 208.0
-margin_bottom = 100.0
+margin_left = 72.0
+margin_right = 136.0
+margin_bottom = 96.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OrganButton2" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2"]
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2"]
+margin_right = 64.0
+margin_bottom = 96.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 20.0
-margin_bottom = -20.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer"]
-margin_right = 100.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer"]
+margin_right = 64.0
 margin_bottom = 28.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer/CenterContainer"]
-margin_left = 31.0
-margin_right = 69.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/CenterContainer"]
+margin_left = 27.0
+margin_right = 37.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 2 )
-text = "+1.30"
+text = "2"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer"]
+[node name="OrganButton2" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer"]
 margin_top = 32.0
-margin_right = 100.0
-margin_bottom = 60.0
+margin_right = 64.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/OrganButton2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -12
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/OrganButton2/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/OrganButton2/VBoxContainer/CenterContainer2"]
-margin_left = 30.0
-margin_right = 70.0
-margin_bottom = 28.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/OrganButton2/VBoxContainer/CenterContainer"]
+margin_left = 13.0
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
-text = "$750"
+text = "+1.00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/OrganButton2/VBoxContainer"]
+margin_top = 26.0
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/OrganButton2/VBoxContainer/CenterContainer2"]
+margin_left = 12.0
+margin_top = 5.0
+margin_right = 52.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 2 )
+text = "$500"
 align = 1
 valign = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 212.0
-margin_right = 212.0
-margin_bottom = 100.0
+margin_left = 140.0
+margin_right = 140.0
+margin_bottom = 96.0
 size_flags_horizontal = 7
 
 [node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 216.0
-margin_right = 316.0
-margin_bottom = 100.0
+margin_left = 144.0
+margin_right = 208.0
+margin_bottom = 96.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OrganButton3" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3"]
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3"]
+margin_right = 64.0
+margin_bottom = 96.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 20.0
-margin_bottom = -20.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer"]
-margin_right = 100.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer"]
+margin_right = 64.0
 margin_bottom = 28.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer/CenterContainer"]
-margin_left = 29.0
-margin_right = 71.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/CenterContainer"]
+margin_left = 27.0
+margin_right = 37.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 2 )
-text = "+2.00"
+text = "3"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer"]
+[node name="OrganButton3" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer"]
 margin_top = 32.0
-margin_right = 100.0
-margin_bottom = 60.0
+margin_right = 64.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/OrganButton3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -12
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/OrganButton3/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/OrganButton3/VBoxContainer/CenterContainer2"]
-margin_left = 27.0
-margin_right = 73.0
-margin_bottom = 28.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/OrganButton3/VBoxContainer/CenterContainer"]
+margin_left = 13.0
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
-text = "$1000"
+text = "+1.00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/OrganButton3/VBoxContainer"]
+margin_top = 26.0
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer3/VBoxContainer/OrganButton3/VBoxContainer/CenterContainer2"]
+margin_left = 12.0
+margin_top = 5.0
+margin_right = 52.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 2 )
+text = "$500"
 align = 1
 valign = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 320.0
-margin_right = 320.0
-margin_bottom = 100.0
+margin_left = 212.0
+margin_right = 212.0
+margin_bottom = 96.0
 size_flags_horizontal = 7
 
 [node name="CenterContainer4" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
-margin_left = 324.0
-margin_right = 424.0
-margin_bottom = 100.0
+margin_left = 216.0
+margin_right = 280.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4"]
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4"]
+margin_right = 64.0
+margin_bottom = 96.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 28.0
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/CenterContainer"]
+margin_left = 27.0
+margin_right = 37.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="OrganButton4" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer"]
+margin_top = 32.0
+margin_right = 64.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 60, 60 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-disabled = true
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/OrganButton4"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -12
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/OrganButton4/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button/VBoxContainer"]
-margin_right = 100.0
-margin_bottom = 60.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/Button/VBoxContainer/CenterContainer"]
-margin_left = 25.0
-margin_top = 16.0
-margin_right = 75.0
-margin_bottom = 44.0
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/OrganButton4/VBoxContainer/CenterContainer"]
+margin_left = 13.0
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
-text = "IMAGE"
+text = "+1.00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/OrganButton4/VBoxContainer"]
+margin_top = 26.0
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/CenterContainer4/VBoxContainer/OrganButton4/VBoxContainer/CenterContainer2"]
+margin_left = 12.0
+margin_top = 5.0
+margin_right = 52.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 2 )
+text = "$500"
 align = 1
 valign = 1
 

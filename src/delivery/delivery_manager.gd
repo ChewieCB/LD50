@@ -14,6 +14,8 @@ var delivery_points
 var current_delivery_point
 var current_target
 
+onready var current_organ = ""
+
 onready var gps_path = []
 onready var gps_arrow = $GPSChevron
 
@@ -52,6 +54,7 @@ func _ready():
 
 
 func _process(_delta):
+	main_ui.organ_display.organ_label.text = current_organ
 	if current_target:
 		# Generate the GPS pathfinding
 		gps_path = pathfinding.get_new_path(player.global_position, current_target.global_position)
@@ -77,7 +80,7 @@ func generate_pickup():
 	# Pick an organ and delivery stats
 	# TODO - add organ specific stuff here
 	# Randomise the NPC portrait (and dialog)
-	npc_dialog.set_random_dialog()
+	current_organ = npc_dialog.set_random_dialog()
 	npc_dialog.set_random_portrait()
 	# Get a delivery point
 	activate_new_delivery_point()
@@ -108,6 +111,7 @@ func activate_new_delivery_point():
 
 func delivery_completed(point):
 	current_delivery_point.set_can_deliver(false)
+	current_organ = ""
 	
 	current_target = null
 	gps_path = []
