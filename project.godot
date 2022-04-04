@@ -111,7 +111,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD50"
-run/main_scene="res://src/test_scenes/TestDeliveryLocations.tscn"
+run/main_scene="res://src/test_scenes/TestNewTileMap.tscn"
 config/icon="res://icon.png"
 
 [autoload]

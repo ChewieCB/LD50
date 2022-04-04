@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player = $Player
-onready var tilemap = $Nav/TileMap
+onready var tilemap = $Nav/Floor
 onready var pathfinding = $Pathfinding
 
 

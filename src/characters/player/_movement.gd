@@ -7,25 +7,25 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var engine_power = 750
+export var engine_power = 490
 export var acceleration = Vector2.ZERO
-export var friction = -0.3
-export var drag = -0.002
+export var friction = -0.4
+export var drag = -0.004
 #
-export var braking_power = -450
+export var braking_power = -370
 export var handbrake_power = -200
-export var max_speed_reverse = 250
+export var max_speed_reverse = 350
 #
-export var slip_speed = 300  # Speed where traction is reduced
+export var slip_speed = 240 # Speed where traction is reduced
 export var traction_drift = 0.01 # Drifting traction
 export var traction_fast = 0.1  # High-speed traction
 export var traction_slow = 0.7  # Low-speed traction
 #
-export var bounce_speed = 250 # Speed at which collisions cause the player to bounce off
+export var bounce_speed = 150 # Speed at which collisions cause the player to bounce off
 
 
-export var wheel_base = 55
-export var steering_angle_high = 45
+export var wheel_base = 35
+export var steering_angle_high = 65
 export var steering_angle_low = 30
 var steering_angle = steering_angle_low
 var steer_direction
@@ -135,7 +135,7 @@ func get_input():
 			_state_machine.transition_to("Movement/Drifting")
 			steering_angle = lerp(steering_angle, steering_angle_high, 0.2)
 			acceleration = _actor.transform.x * handbrake_power
-			friction = lerp(friction, -0.4, 0.5)
+			friction = lerp(friction, -0.1, 0.5)
 		else:
 			steering_angle = lerp(steering_angle, steering_angle_low, 0.5)
 			friction = lerp(friction, -1.4, 0.5)

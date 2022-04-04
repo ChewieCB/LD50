@@ -25,8 +25,8 @@
 [ext_resource path="res://assets/sfx/player/looping_engine_sound.wav" type="AudioStream" id=24]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 11.0
-height = 40.0
+radius = 5.99997
+height = 16.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -80,7 +80,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, -1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -108,7 +108,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 6 ) ]
+"values": [ Vector2( 0, 3 ) ]
 }
 
 [sub_resource type="DynamicFontData" id=5]
@@ -123,18 +123,15 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
-scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
 [node name="ExhaustSprite" type="Sprite" parent="."]
 rotation = 1.5708
-scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 modulate = Color( 0.498039, 0.831373, 0.0941176, 1 )
-position = Vector2( 0, -1 )
+position = Vector2( 3, -1 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -181,7 +178,6 @@ valign = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 2, 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 2 )

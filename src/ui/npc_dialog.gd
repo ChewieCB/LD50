@@ -70,11 +70,14 @@ func read_dialogue_data():
 
 
 func set_random_portrait():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
 	var valid_portraits = npc_portraits
 	# We don't want to use the same portrait twice
-#	valid_portraits.erase(current_portrait)
+	valid_portraits.erase(current_portrait)
 	
-	var rand_idx = int(rand_range(0, valid_portraits.size()))
+	var rand_idx = rng.randi_range(0, valid_portraits.size() - 1)
 	set_current_portait(rand_idx)
 	print("Using %s as current portrait!" % rand_idx)
 

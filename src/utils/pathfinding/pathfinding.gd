@@ -45,7 +45,7 @@ func create_navigation_map(tilemap: TileMap):
 	half_cell_size = tilemap.cell_size / 2
 	used_rect = tilemap.get_used_rect()
 	
-	var tiles = tilemap.get_used_cells_by_id(1)
+	var tiles = tilemap.get_used_cells()
 	
 	add_traversible_tiles(tiles)
 	connect_traversible_tiles(tiles)

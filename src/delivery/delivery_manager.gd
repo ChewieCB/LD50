@@ -64,9 +64,9 @@ func _process(_delta):
 func _physics_process(_delta):
 	if gps_path:
 		gps_arrow.visible = true
-		if gps_path.size() > 12:
-			gps_arrow.global_position = lerp(gps_arrow.global_position, gps_path[6], 0.2)
-			gps_arrow.look_at(gps_path[12])
+		if gps_path.size() > 4:
+			gps_arrow.global_position = lerp(gps_arrow.global_position, gps_path[2], 0.2)
+			gps_arrow.look_at(gps_path[4])
 			gps_arrow.rotate(PI/2)
 		else:
 			gps_arrow.visible = false
