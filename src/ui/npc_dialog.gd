@@ -80,6 +80,9 @@ func set_random_portrait():
 
 
 func set_random_dialog(organ=null):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
 	var organ_key
 	
 	if organ:
@@ -89,7 +92,7 @@ func set_random_dialog(organ=null):
 		var organs =  [
 			"Heart", "Lung", "Kidney", "Liver", "Brain", "Intestines", "Eyes", "Skin"
 		]
-		var rand_idx = int(rand_range(0, organs.size()))
+		var rand_idx = rng.randi_range(0, organs.size() - 1)
 		organ_key = organs[rand_idx]
 	
 	# Pick a random dialog text for the specified organ
@@ -99,11 +102,13 @@ func set_random_dialog(organ=null):
 	if current_dialog_text and current_dialog_text in possible_dialog_text:
 		possible_dialog_text.erase(current_dialog_text)
 	
-	var rand_idx = int(rand_range(0, possible_dialog_text.size()))
+	var rand_idx = rng.randi_range(0, possible_dialog_text.size() - 1)
 	var random_dialog = possible_dialog_text[rand_idx]
 	
 	dialog.text = random_dialog
-	print("Using <%s> as current dialog!" % random_dialog)
+	
+	# Return the organ key for mapping to the ui
+	return organ_key
 
 
 func set_current_portait(value):
