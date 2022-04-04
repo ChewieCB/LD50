@@ -74,6 +74,7 @@ valign = 1
 position = Vector2( 0, -47 )
 
 [node name="Sprite" type="Sprite" parent="NPC (Placeholder)"]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC (Placeholder)"]

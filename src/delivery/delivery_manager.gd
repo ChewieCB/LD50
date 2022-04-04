@@ -67,14 +67,14 @@ func _process(_delta):
 			organ_id = main_ui.organ_display.Organs.KIDNEY
 		"Liver":
 			organ_id = main_ui.organ_display.Organs.LIVER
-#		"Brain":
-#			organ_id = main_ui.organ_display.Organs.BRAIN
-#		"Intestines":
-#			organ_id = main_ui.organ_display.Organs.INTESTINES
-#		"Eyes":
-#			organ_id = main_ui.organ_display.Organs.EYES
-#		"Skin":
-#			organ_id = main_ui.organ_display.Organs.SKIN
+		"Brain":
+			organ_id = main_ui.organ_display.Organs.BRAIN
+		"Intestines":
+			organ_id = main_ui.organ_display.Organs.GENERIC
+		"Eyes":
+			organ_id = main_ui.organ_display.Organs.EYE
+		"Skin":
+			organ_id = main_ui.organ_display.Organs.GENERIC
 	main_ui.organ_display.set_current_organ(organ_id)
 	update()
 

@@ -8,7 +8,7 @@ onready var organ_label = $CenterContainer/Label
 
 enum Organs {
 	FRAME,
-	HEART, KIDNEY, LIVER, LUNG
+	HEART, KIDNEY, LIVER, LUNG, BRAIN, EYE, GENERIC
 }
 
 func _ready():
