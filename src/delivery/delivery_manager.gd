@@ -104,7 +104,7 @@ func generate_pickup():
 	# Randomise the NPC portrait (and dialog)
 	current_organ = npc_dialog.set_random_dialog()
 	print(current_organ)
-	npc_dialog.set_random_portrait()
+#	npc_dialog.set_random_portrait()
 	# Get a delivery point
 	activate_new_delivery_point()
 
@@ -141,6 +141,8 @@ func delivery_completed(point):
 	
 	# Show the NPC dialog
 	npc_dialog.show_dialog()
+	npc_dialog.set_random_portrait()
+	npc_dialog.dialog.text = npc_dialog.current_dialog
 		
 	# Generate an amount of money to give the player
 	randomize()

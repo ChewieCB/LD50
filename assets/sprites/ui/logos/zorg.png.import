@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/buildings_v2.png-82dbb0ab6e09a39736dacdd588c8c62c.stex"
+path="res://.import/zorg.png-86f387ddb75548a3a3a8a135330b33a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/buildings_v2.png"
-dest_files=[ "res://.import/buildings_v2.png-82dbb0ab6e09a39736dacdd588c8c62c.stex" ]
+source_file="res://assets/sprites/ui/logos/zorg.png"
+dest_files=[ "res://.import/zorg.png-86f387ddb75548a3a3a8a135330b33a6.stex" ]
 
 [params]
 

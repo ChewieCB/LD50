@@ -71,6 +71,7 @@ align = 1
 valign = 1
 
 [node name="NPC (Placeholder)" type="KinematicBody2D" parent="."]
+visible = false
 position = Vector2( 0, -47 )
 
 [node name="Sprite" type="Sprite" parent="NPC (Placeholder)"]
@@ -78,6 +79,7 @@ visible = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC (Placeholder)"]
+visible = false
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="PickupZone" to="." method="_on_PickupZone_body_entered"]

@@ -7,6 +7,7 @@ onready var portrait_rect = $MarginContainer/HBoxContainer/CenterContainer/Textu
 onready var dialog = $MarginContainer/HBoxContainer/CenterContainer2/Label
 
 var dialogue_data: Dictionary
+var current_dialog = ""
 var current_dialog_text = ""
 
 
@@ -14,19 +15,23 @@ func _ready():
 	yield(owner, "ready")
 	# Clear the initial portrait texture
 	portrait_rect.texture = null
-	self.visible = false
+	self.visible = true
 	# Read all the CSV dialogue into a var for retrieving later
 	dialogue_data = read_dialogue_data()
 	dialog.text = current_dialog_text
+	set_current_portait(0)
 
 
 func show_dialog():
-	self.visible = true
+	pass
+#	self.visible = true
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("interact") and self.visible:
-		self.visible = false
+		if dialog.text:
+			dialog.text = ""
+			set_current_portait(0)
 
 
 func read_dialogue_data():
@@ -77,7 +82,7 @@ func set_random_portrait():
 	# We don't want to use the same portrait twice
 	valid_portraits.erase(current_portrait)
 	
-	var rand_idx = rng.randi_range(0, valid_portraits.size() - 1)
+	var rand_idx = rng.randi_range(1, valid_portraits.size() - 1)
 	set_current_portait(rand_idx)
 	print("Using %s as current portrait!" % rand_idx)
 
@@ -108,7 +113,8 @@ func set_random_dialog(organ=null):
 	var rand_idx = rng.randi_range(0, possible_dialog_text.size() - 1)
 	var random_dialog = possible_dialog_text[rand_idx]
 	
-	dialog.text = random_dialog
+#	dialog.text = random_dialog
+	current_dialog = random_dialog
 	
 	# Return the organ key for mapping to the ui
 	return organ_key
@@ -118,8 +124,6 @@ func set_current_portait(value):
 	current_portrait = value
 	if portrait_rect:
 		portrait_rect.texture = npc_portraits[current_portrait]
-
-
 
 
 

@@ -9,7 +9,7 @@ extends State
 #       to better separate movement vars.
 export var engine_power = 490
 export var acceleration = Vector2.ZERO
-export var friction = -0.4
+export var friction = -0.5
 export var drag = -0.004
 #
 export var braking_power = -370

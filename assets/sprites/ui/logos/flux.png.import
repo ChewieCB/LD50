@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/buildings_v2.png-82dbb0ab6e09a39736dacdd588c8c62c.stex"
+path="res://.import/flux.png-b3a507bf49d72dc3896ac8823e2a8af1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/buildings_v2.png"
-dest_files=[ "res://.import/buildings_v2.png-82dbb0ab6e09a39736dacdd588c8c62c.stex" ]
+source_file="res://assets/sprites/ui/logos/flux.png"
+dest_files=[ "res://.import/flux.png-b3a507bf49d72dc3896ac8823e2a8af1.stex" ]
 
 [params]
 
