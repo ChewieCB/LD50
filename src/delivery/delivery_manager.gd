@@ -55,13 +55,35 @@ func _ready():
 
 func _process(_delta):
 	main_ui.organ_display.organ_label.text = current_organ
-	if current_target:
-		# Generate the GPS pathfinding
-		gps_path = pathfinding.get_new_path(player.global_position, current_target.global_position)
+	# npc_dialog keys are arranged as such:
+	# "Heart", "Lung", "Kidney", "Liver", "Brain", "Intestines", "Eyes", "Skin"
+	var organ_id = main_ui.organ_display.Organs.FRAME
+	match current_organ:
+		"Heart":
+			organ_id = main_ui.organ_display.Organs.HEART
+		"Lung":
+			organ_id = main_ui.organ_display.Organs.LUNG
+		"Kidney":
+			organ_id = main_ui.organ_display.Organs.KIDNEY
+		"Liver":
+			organ_id = main_ui.organ_display.Organs.LIVER
+#		"Brain":
+#			organ_id = main_ui.organ_display.Organs.BRAIN
+#		"Intestines":
+#			organ_id = main_ui.organ_display.Organs.INTESTINES
+#		"Eyes":
+#			organ_id = main_ui.organ_display.Organs.EYES
+#		"Skin":
+#			organ_id = main_ui.organ_display.Organs.SKIN
+	main_ui.organ_display.set_current_organ(organ_id)
 	update()
 
 
 func _physics_process(_delta):
+	if current_target:
+		# Generate the GPS pathfinding
+		gps_path = pathfinding.get_new_path(player.global_position, current_target.global_position)
+	
 	if gps_path:
 		gps_arrow.visible = true
 		if gps_path.size() > 4:
@@ -81,6 +103,7 @@ func generate_pickup():
 	# TODO - add organ specific stuff here
 	# Randomise the NPC portrait (and dialog)
 	current_organ = npc_dialog.set_random_dialog()
+	print(current_organ)
 	npc_dialog.set_random_portrait()
 	# Get a delivery point
 	activate_new_delivery_point()
@@ -133,16 +156,5 @@ func delivery_completed(point):
 	# Set a new pickup
 	delivery_hub.new_delivery()
 	current_target = delivery_hub
-
-
-# NPC randomization
-#func randomize_npc_portrait():
-#	randomize()
-#	var idx = int(rand_range(0, npc_portraits_paths.size()))
-#	var path = npc_portraits_paths[idx]
-##	DialogicResources.set_theme_value("theme-1649019827.cfg", 'next_indicator','image', path)
-#	idx += 1
-
-
-
+	gps_path = pathfinding.get_new_path(player.global_position, current_target.global_position)
 
