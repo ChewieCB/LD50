@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/sprites/npc_portraits/text_box.png" type="Texture" id=2]
+[ext_resource path="res://src/ui/npc_dialog.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/DialogFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/sprites/npc_portraits/portrait_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/npc_portraits/portrait_2.png" type="Texture" id=6]
+
+[node name="NPCDialog" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 3 )
+npc_portraits = [ ExtResource( 5 ), ExtResource( 6 ) ]
+current_portrait = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.5
+margin_top = -32.0
+margin_right = 147.5
+margin_bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 295.0
+margin_bottom = 64.0
+custom_constants/separation = -1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 63.0
+margin_right = 191.0
+margin_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer2"]
+margin_right = 128.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer2"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 124.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/line_spacing = -2
+custom_fonts/font = ExtResource( 4 )
+text = "You know if you take part of the liver out, it’ll regenerate? There’s eight people walking around with livers from me!"
+valign = 1
+autowrap = true
