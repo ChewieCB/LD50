@@ -5,6 +5,8 @@ onready var audio_manager = $AudioManager
 onready var pathfinding = $"../Pathfinding"
 onready var player = $"../Player"
 
+export (Array, String) var npc_portraits_paths
+
 export var delivery_hub_path := NodePath()
 onready var delivery_hub = get_node(delivery_hub_path)
 
@@ -15,9 +17,16 @@ var current_target
 onready var gps_path = []
 onready var gps_arrow = $GPSChevron
 
+export var main_ui_path := NodePath()
+var main_ui
+var npc_dialog
+
 
 func _ready():
 	yield(owner, "ready")
+	main_ui = get_node(main_ui_path)
+	npc_dialog = main_ui.npc_dialog
+	
 	delivery_points = get_children()
 	delivery_points.erase(audio_manager)
 	delivery_points.erase(gps_arrow)
@@ -65,11 +74,14 @@ func _physics_process(_delta):
 
 
 func generate_pickup():
+	# Pick an organ and delivery stats
+	# TODO - add organ specific stuff here
+	# Randomise the NPC portrait (and dialog)
+	npc_dialog.set_random_dialog()
+	npc_dialog.set_random_portrait()
 	# Get a delivery point
 	activate_new_delivery_point()
-	# Pick an organ and delivery stats
-	# TODO
-	
+
 
 func activate_new_delivery_point():
 	randomize()
@@ -99,6 +111,9 @@ func delivery_completed(point):
 	
 	current_target = null
 	gps_path = []
+	
+	# Show the NPC dialog
+	npc_dialog.show_dialog()
 		
 	# Generate an amount of money to give the player
 	randomize()
@@ -108,9 +123,22 @@ func delivery_completed(point):
 	# SFX
 	audio_manager.transition_to(audio_manager.States.DELIVERY_COMPLETED)
 	
-	yield(point.completion_dialog, "timeline_end")
+#	yield(point.completion_dialog, "timeline_end")
 	current_delivery_point.set_active(false)
 	
 	# Set a new pickup
 	delivery_hub.new_delivery()
 	current_target = delivery_hub
+
+
+# NPC randomization
+#func randomize_npc_portrait():
+#	randomize()
+#	var idx = int(rand_range(0, npc_portraits_paths.size()))
+#	var path = npc_portraits_paths[idx]
+##	DialogicResources.set_theme_value("theme-1649019827.cfg", 'next_indicator','image', path)
+#	idx += 1
+
+
+
+

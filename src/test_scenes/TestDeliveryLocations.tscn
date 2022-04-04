@@ -22,7 +22,9 @@ tile_data = PoolIntArray( -7667807, 0, 0, -7667806, 0, 0, -7667805, 0, 0, -76678
 position = Vector2( 418, 16 )
 
 [node name="DeliveryManager" parent="." instance=ExtResource( 4 )]
+npc_portraits_paths = [ "res://assets/sprites/npc_portraits/portrait_1.png", "res://assets/sprites/npc_portraits/portrait_2.png", "res://assets/sprites/npc_portraits/frame.png" ]
 delivery_hub_path = NodePath("../DeliveryHub")
+main_ui_path = NodePath("../CanvasLayer/MainUI")
 
 [node name="GPSChevron" type="Sprite" parent="DeliveryManager"]
 visible = false

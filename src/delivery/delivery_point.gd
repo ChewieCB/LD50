@@ -25,13 +25,11 @@ func _physics_process(_delta):
 
 func generate_delivery_dialog():
 	# TODO - generate these randomly based on organ and lines in a csv
-	completion_dialog = Dialogic.start('Test Delivery Text') 
-	add_child(completion_dialog)
+#	completion_dialog = Dialogic.start('Test Delivery Text') 
+#	add_child(completion_dialog)
 	set_active(false)
 	set_can_deliver(false)
-#	get_tree().paused = true
-	yield(completion_dialog, "timeline_end")
-#	get_tree().paused = false
+#	yield(completion_dialog, "timeline_end")
 
 
 func set_active(value):

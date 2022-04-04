@@ -2,7 +2,7 @@
 	"color": "#ffffffff",
 	"description": "",
 	"display_name": "",
-	"display_name_bool": true,
+	"display_name_bool": false,
 	"id": "character-1648994236.json",
 	"mirror_portraits": false,
 	"name": "Test Character",
@@ -13,7 +13,15 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://assets/sprites/npc_portraits/portrait_1.png"
+		},
+		{
+			"name": "npc_2",
+			"path": "res://assets/sprites/npc_portraits/portrait_2.png"
+		},
+		{
+			"name": "frame",
+			"path": "res://assets/sprites/npc_portraits/frame.png"
 		}
 	],
 	"scale": 100,
