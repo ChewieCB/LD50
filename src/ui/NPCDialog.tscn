@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sprites/npc_portraits/portrait_3.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/npc_portraits/text_box.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/npc_portraits/portrait_2.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/npc_portraits/portrait_4.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/ui/logos/zorg.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/npc_portraits/portrait_5.png" type="Texture" id=9]
 
 [node name="NPCDialog" type="Control"]
 anchor_left = 0.5
@@ -19,7 +20,7 @@ margin_top = -180.0
 margin_right = 320.0
 margin_bottom = 180.0
 script = ExtResource( 3 )
-npc_portraits = [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 7 ) ]
+npc_portraits = [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 9 ) ]
 current_portrait = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

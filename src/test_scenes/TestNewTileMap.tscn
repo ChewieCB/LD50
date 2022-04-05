@@ -33,7 +33,7 @@ tile_data = PoolIntArray( -3604527, 0, 65537, -3604526, 0, 65537, -3604525, 0, 6
 position = Vector2( 0, -8 )
 
 [node name="DeliveryManager" parent="." instance=ExtResource( 2 )]
-npc_portraits_paths = [ "res://assets/sprites/npc_portraits/portrait_1.png", "res://assets/sprites/npc_portraits/portrait_2.png", "res://assets/sprites/npc_portraits/portrait_3.png", "res://assets/sprites/npc_portraits/portrait_4.png" ]
+npc_portraits_paths = [ "res://assets/sprites/npc_portraits/portrait_1.png", "res://assets/sprites/npc_portraits/portrait_2.png", "res://assets/sprites/npc_portraits/portrait_3.png", "res://assets/sprites/npc_portraits/portrait_4.png", "res://assets/sprites/npc_portraits/portrait_5.png" ]
 delivery_hub_path = NodePath("../DeliveryHub")
 main_ui_path = NodePath("../CanvasLayer/MainUI")
 
