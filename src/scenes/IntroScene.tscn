@@ -1209,6 +1209,7 @@ margin_right = 906.0
 margin_bottom = 300.0
 
 [node name="FluxMedicalEmailContainer" type="CenterContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 906.0
 margin_bottom = 234.0
 
@@ -1226,12 +1227,11 @@ margin_bottom = 234.0
 custom_constants/separation = -10
 
 [node name="CenterContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/FluxMedicalEmailContainer/VBoxContainer"]
-margin_left = -20.0
 margin_right = 283.0
 margin_bottom = 64.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/FluxMedicalEmailContainer/VBoxContainer/CenterContainer"]
-margin_right = 303.0
+margin_right = 283.0
 margin_bottom = 64.0
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/FluxMedicalEmailContainer/VBoxContainer/CenterContainer/HBoxContainer"]
@@ -1402,6 +1402,7 @@ autowrap = true
 clip_text = true
 
 [node name="ContinueContainer" type="CenterContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 238.0
 margin_right = 906.0
 margin_bottom = 258.0

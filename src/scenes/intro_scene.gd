@@ -21,5 +21,6 @@ func set_scene_index(value):
 	if scene_index >= 7:
 		# Get next scene
 		yield(animation_player, "animation_finished")
+		BgmPlayer.menu_to_game()
 		get_tree().change_scene("res://src/test_scenes/TestNewTileMap.tscn")
 		
