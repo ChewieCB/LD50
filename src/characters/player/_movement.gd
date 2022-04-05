@@ -51,6 +51,7 @@ func physics_process(delta: float):
 	
 	# Debug Reset
 	if Input.is_action_pressed("reset"):
+		GlobalFlags.IS_GAME_OVER = false
 		var _ret = get_tree().reload_current_scene()
 	elif Input.is_action_pressed("quit"):
 		get_tree().quit()

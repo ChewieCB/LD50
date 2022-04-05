@@ -8,7 +8,9 @@ func enter(_msg: Dictionary = {}):
 	_actor.exhaust_sprite.visible = false
 	# Wait a bit and turn the engine back on
 	yield(get_tree().create_timer(0.6),"timeout")
-	GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+	# Hackity hack hack
+	if not GlobalFlags.IS_GAME_OVER:
+		GlobalFlags.IS_PLAYER_CONTROLLABLE = true
 	exit()
 
 

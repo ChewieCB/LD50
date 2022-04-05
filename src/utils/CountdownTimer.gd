@@ -14,6 +14,7 @@ func _add_time(value):
 
 func game_over():
 	GlobalFlags.IS_PLAYER_CONTROLLABLE = false
+	GlobalFlags.IS_GAME_OVER = true
 	
 	run_end_time = OS.get_unix_time()
 	var run_time = run_end_time - run_start_time

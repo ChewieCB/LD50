@@ -5,7 +5,7 @@ signal game_over
 onready var timer = $Timer
 onready var label = $CountdownLabel
 
-export (int) var start_time = 120
+export (int) var start_time = 5
 
 
 func _ready():
