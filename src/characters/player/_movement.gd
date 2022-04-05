@@ -7,16 +7,16 @@ extends State
 # These should be fallback defaults
 # TODO: Make these null and raise an exception to indicate bad State extension
 #       to better separate movement vars.
-export var engine_power = 490
+export var engine_power = 400
 export var acceleration = Vector2.ZERO
 export var friction = -0.5
 export var drag = -0.004
 #
-export var braking_power = -370
+export var braking_power = -320
 export var handbrake_power = -200
-export var max_speed_reverse = 350
+export var max_speed_reverse = 35
 #
-export var slip_speed = 240 # Speed where traction is reduced
+export var slip_speed = 500 # Speed where traction is reduced
 export var traction_drift = 0.01 # Drifting traction
 export var traction_fast = 0.1  # High-speed traction
 export var traction_slow = 0.7  # Low-speed traction
@@ -24,7 +24,7 @@ export var traction_slow = 0.7  # Low-speed traction
 export var bounce_speed = 150 # Speed at which collisions cause the player to bounce off
 
 
-export var wheel_base = 35
+export var wheel_base = 25
 export var steering_angle_high = 65
 export var steering_angle_low = 30
 var steering_angle = steering_angle_low
@@ -150,7 +150,7 @@ func apply_friction():
 		velocity = Vector2.ZERO
 	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
-	if velocity.length() < 100:
+	if velocity.length() < 20:
 		friction_force *= 3
 	if Input.is_action_pressed("handbrake"):
 		friction_force *= 0.6
