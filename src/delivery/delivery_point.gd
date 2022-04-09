@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	if can_deliver:
 		if Input.is_action_just_released("interact"):
 			generate_delivery_dialog()
-			emit_signal("delivered", self)
+			emit_signal("delivered")
 
 
 func generate_delivery_dialog():

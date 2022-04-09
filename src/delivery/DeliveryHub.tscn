@@ -8,17 +8,10 @@
 [ext_resource path="res://assets/sprites/environment/zones/pickup/pickup_zone_h.png" type="Texture" id=6]
 [ext_resource path="res://src/environment/zonefade_out.tres" type="Animation" id=7]
 [ext_resource path="res://src/environment/zonehidden.tres" type="Animation" id=8]
+[ext_resource path="res://src/ui/FloatingLabel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 32 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 24
-outline_size = 2
-outline_color = Color( 0.8, 0.972549, 1, 1 )
-extra_spacing_char = 4
-extra_spacing_space = 1
-font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 24
@@ -150,25 +143,15 @@ position = Vector2( 0, 48 )
 shape = SubResource( 1 )
 
 [node name="DeliveryZoneSprite" type="Sprite" parent="PickupZone"]
-modulate = Color( 0.365746, 0.912355, 0.961304, 1 )
+modulate = Color( 0.172549, 0.717647, 0.807843, 0 )
 position = Vector2( -7.62939e-06, 48 )
 texture = ExtResource( 6 )
 
-[node name="Pickuplabel" type="Label" parent="PickupZone"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -57.0
-margin_top = -17.8072
-margin_right = 57.0
-margin_bottom = 9.19277
-custom_colors/font_color = Color( 0.00784314, 0.862745, 0.929412, 1 )
+[node name="Pickuplabel" parent="PickupZone" instance=ExtResource( 9 )]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = -16.4514
+margin_bottom = 10.5486
 custom_colors/font_color_shadow = Color( 0.172549, 0.717647, 0.807843, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 1
-custom_fonts/font = SubResource( 5 )
-text = "Pick up"
-align = 1
-valign = 1
 
 [node name="ShopZoneSprite" type="Sprite" parent="PickupZone"]
 modulate = Color( 1, 1, 1, 0 )
@@ -194,13 +177,13 @@ valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "pickup_glow"
+anims/hidden = ExtResource( 8 )
 anims/pickup_fade_in = ExtResource( 5 )
 anims/pickup_fade_out = ExtResource( 7 )
 anims/pickup_glow = ExtResource( 4 )
 anims/shop_fade_in = SubResource( 7 )
 anims/shop_fade_out = SubResource( 8 )
 anims/shop_glow = SubResource( 9 )
-anims/zonehidden = ExtResource( 8 )
 
 [connection signal="body_entered" from="PickupZone" to="." method="_on_PickupZone_body_entered"]
 [connection signal="body_exited" from="PickupZone" to="." method="_on_PickupZone_body_exited"]
