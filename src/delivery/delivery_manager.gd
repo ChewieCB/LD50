@@ -121,7 +121,9 @@ func activate_new_delivery_point():
 	# Pick a random delivery point to activate
 	var rand_index = floor(rand_range(0, eligible_delivery_points.size()))
 	var new_delivery_point = eligible_delivery_points[rand_index]
+	
 	new_delivery_point.set_active(true)
+	
 	current_delivery_point = new_delivery_point
 	# SFX
 	if audio_manager.sfx_player_1.is_playing():
@@ -152,7 +154,6 @@ func delivery_completed(point):
 	# SFX
 	audio_manager.transition_to(audio_manager.States.DELIVERY_COMPLETED)
 	
-#	yield(point.completion_dialog, "timeline_end")
 	current_delivery_point.set_active(false)
 	
 	# Set a new pickup

@@ -4,6 +4,8 @@ signal pickup
 
 onready var player = $"../Player"
 
+onready var animation_player = $AnimationPlayer
+
 onready var pickup_zone = $PickupZone
 onready var pickup_zone_sprite = $PickupZone/DeliveryZoneSprite
 onready var shop_zone_sprite = $PickupZone/ShopZoneSprite
@@ -13,11 +15,12 @@ onready var can_pickup = false setget set_can_pickup
 var completion_dialog
 
 func _ready():
+	animation_player.play("hidden")
 	set_active(is_active)
 
 
 func _physics_process(_delta):
-	if pickup_zone.overlaps_body(player) and not pickup_zone_sprite.visible:
+	if pickup_zone.overlaps_body(player) and animation_player.current_animation == "shop_glow":
 		GlobalFlags.CAN_SHOP = true
 	else:
 		GlobalFlags.CAN_SHOP = false
@@ -46,8 +49,22 @@ func generate_delivery_dialog():
 func set_active(value):
 	is_active = value
 	
-	pickup_zone_sprite.visible = is_active
-	shop_zone_sprite.visible = !is_active
+	if is_active:
+		animation_player.play("shop_fade_out")
+		yield(animation_player, "animation_finished")
+		animation_player.play("pickup_fade_in")
+		yield(animation_player, "animation_finished")
+		animation_player.play("pickup_glow")
+	else:
+		animation_player.play("pickup_fade_out")
+		yield(animation_player, "animation_finished")
+		animation_player.play("shop_fade_in")
+		yield(animation_player, "animation_finished")
+		animation_player.play("shop_glow")
+		
+	
+#	pickup_zone_sprite.visible = is_active
+#	shop_zone_sprite.visible = !is_active
 	GlobalFlags.CAN_SHOP = !is_active
 
 
