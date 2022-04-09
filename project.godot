@@ -114,6 +114,10 @@ config/name="LD50"
 run/main_scene="res://src/ui/splash_screen/SplashScreen.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency.web=15
+
 [autoload]
 
 GlobalFlags="*res://src/utils/GlobalFlags.gd"
