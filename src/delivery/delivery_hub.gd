@@ -27,7 +27,6 @@ func _physics_process(_delta):
 	
 	if can_pickup:
 		if Input.is_action_just_released("interact"):
-#			generate_delivery_dialog()
 			emit_signal("pickup")
 			set_active(false)
 			set_can_pickup(false)
@@ -35,15 +34,6 @@ func _physics_process(_delta):
 
 func new_delivery():
 	set_active(true)
-
-
-func generate_delivery_dialog():
-	# TODO - generate these randomly based on organ and lines in a csv
-	completion_dialog = Dialogic.start('Test Delivery Text') 
-	add_child(completion_dialog)
-	get_tree().paused = true
-	yield(completion_dialog, "timeline_end")
-	get_tree().paused = false
 
 
 func set_active(value):

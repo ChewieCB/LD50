@@ -13,7 +13,6 @@ onready var button_4 = $MarginContainer/CenterContainer/HBoxContainer/CenterCont
 var button_array
 
 
-
 func _ready():
 	yield(owner, "ready")
 	self.visible = false
@@ -60,6 +59,20 @@ func _physics_process(_delta):
 
 func toggle_shop():
 	self.visible = !self.visible
+	
+	#
+	if self.visible:
+		if CountdownTimer.is_last_30_seconds:
+			BgmPlayer.game_ticker_to_filtered()
+		else:
+			BgmPlayer.game_normal_to_filtered()
+	#
+	else:
+		if CountdownTimer.is_last_30_seconds:
+			BgmPlayer.game_filtered_to_ticker()
+		else:
+			BgmPlayer.game_filtered_to_normal()
+	
 	get_tree().paused = self.visible
 
 

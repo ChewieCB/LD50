@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/main_medley_ticking.mp3-dd180ba1efb59c076441b16fb5b26f75.mp3str"
+
+[deps]
+
+source_file="res://assets/music/main_medley_ticking.mp3"
+dest_files=[ "res://.import/main_medley_ticking.mp3-dd180ba1efb59c076441b16fb5b26f75.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

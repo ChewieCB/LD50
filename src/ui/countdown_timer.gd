@@ -1,11 +1,12 @@
 extends Control
 
+signal _30_seconds
 signal game_over
 
 onready var timer = $Timer
 onready var label = $CountdownLabel
 
-export (int) var start_time = 120
+export (int) var start_time = 35
 
 
 func _ready():
@@ -15,6 +16,9 @@ func _ready():
 
 func _process(_delta):
 	label.text = convert_seconds_to_clock(timer.time_left)
+	#
+	if timer.time_left <= 30 and not CountdownTimer.is_last_30_seconds:
+		CountdownTimer.set_is_last_30_seconds(true)
 
 
 func convert_seconds_to_clock(raw_seconds):
@@ -27,6 +31,10 @@ func convert_seconds_to_clock(raw_seconds):
 
 
 func add_time(value):
+	# Update the game music
+	if CountdownTimer.is_last_30_seconds and (timer.time_left + value) > 30:
+		CountdownTimer.set_is_last_30_seconds(false)
+	
 	timer.start(timer.time_left + value)
 
 
