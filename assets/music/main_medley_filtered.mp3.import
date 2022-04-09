@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/main_medley_filtered.mp3-288954140c208faff5f3f1da9144b59e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/main_medley_filtered.mp3"
+dest_files=[ "res://.import/main_medley_filtered.mp3-288954140c208faff5f3f1da9144b59e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
