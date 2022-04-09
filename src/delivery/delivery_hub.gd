@@ -26,7 +26,10 @@ func _physics_process(_delta):
 		GlobalFlags.CAN_SHOP = false
 	
 	if can_pickup:
-		if Input.is_action_just_released("interact"):
+#		if Input.is_action_just_released("interact"):
+		# Player has to stop to trigger the pickup
+		var movement_state = player.state_machine.get_node("Movement")
+		if movement_state.velocity.length() < 20:
 			emit_signal("pickup")
 			set_active(false)
 			set_can_pickup(false)
