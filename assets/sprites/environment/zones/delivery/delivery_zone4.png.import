@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chevron.png-42aec2d4e8d31d6b959ba9c8ea59f3bd.stex"
+path="res://.import/delivery_zone4.png-197be61fc7af30d6aed458f74c87b9ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/chevron.png"
-dest_files=[ "res://.import/chevron.png-42aec2d4e8d31d6b959ba9c8ea59f3bd.stex" ]
+source_file="res://assets/sprites/environment/zones/delivery/delivery_zone4.png"
+dest_files=[ "res://.import/delivery_zone4.png-197be61fc7af30d6aed458f74c87b9ef.stex" ]
 
 [params]
 

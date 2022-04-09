@@ -23,6 +23,10 @@ export var main_ui_path := NodePath()
 var main_ui
 var npc_dialog
 
+const PICKUP_COLOR = Color("#02dced")
+const DELIVERY_COLOR = Color("#02da88")
+const SHOP_COLOR = Color("#fe86fc")
+
 
 func _ready():
 	yield(owner, "ready")
@@ -39,18 +43,9 @@ func _ready():
 	
 	# Connect the pickup signal
 	delivery_hub.connect("pickup", self, "generate_pickup")
-
-
-#func _draw():
-#	if gps_path:
-#		for idx in range(gps_path.size()):
-#			# Draw every fourth point
-#			if idx % 4 != 0:
-#				continue
-#			var point = gps_path[idx]
-#			draw_circle(point, 4, Color(0.7, 0.2, 0.2, 0.5))
-#	else:
-#		gps_arrow.visible = false
+	
+	# Set the initial target for the first pickup
+	new_pickup()
 
 
 func _process(_delta):
@@ -88,8 +83,8 @@ func _physics_process(_delta):
 		gps_arrow.visible = true
 		if gps_path.size() > 4:
 			gps_arrow.global_position = lerp(gps_arrow.global_position, gps_path[2], 0.2)
-			gps_arrow.look_at(gps_path[4])
-			gps_arrow.rotate(PI/2)
+			gps_arrow.sprite.look_at(gps_path[4])
+			gps_arrow.sprite.rotate(PI/2)
 		else:
 			gps_arrow.visible = false
 			gps_arrow.global_position = player.global_position
@@ -101,10 +96,9 @@ func _physics_process(_delta):
 func generate_pickup():
 	# Pick an organ and delivery stats
 	# TODO - add organ specific stuff here
+	#
 	# Randomise the NPC portrait (and dialog)
 	current_organ = npc_dialog.set_random_dialog()
-	print(current_organ)
-#	npc_dialog.set_random_portrait()
 	# Get a delivery point
 	activate_new_delivery_point()
 
@@ -121,7 +115,9 @@ func activate_new_delivery_point():
 	# Pick a random delivery point to activate
 	var rand_index = floor(rand_range(0, eligible_delivery_points.size()))
 	var new_delivery_point = eligible_delivery_points[rand_index]
+	
 	new_delivery_point.set_active(true)
+	
 	current_delivery_point = new_delivery_point
 	# SFX
 	if audio_manager.sfx_player_1.is_playing():
@@ -130,9 +126,12 @@ func activate_new_delivery_point():
 	
 	# Assign a target for the gps
 	current_target = current_delivery_point
+	# Set the gps arrow colour to delivery
+	gps_arrow.modulate = DELIVERY_COLOR
+	gps_arrow.label.text = "DELIVERY"
 
 
-func delivery_completed(point):
+func delivery_completed():
 	current_delivery_point.set_can_deliver(false)
 	current_organ = ""
 	
@@ -152,11 +151,18 @@ func delivery_completed(point):
 	# SFX
 	audio_manager.transition_to(audio_manager.States.DELIVERY_COMPLETED)
 	
-#	yield(point.completion_dialog, "timeline_end")
 	current_delivery_point.set_active(false)
 	
+	# Set a new pickup
+	new_pickup()
+
+
+func new_pickup():
 	# Set a new pickup
 	delivery_hub.new_delivery()
 	current_target = delivery_hub
 	gps_path = pathfinding.get_new_path(player.global_position, current_target.global_position)
+	# Set the gps arrow colour to delivery
+	gps_arrow.modulate = PICKUP_COLOR
+	gps_arrow.label.text = "PICKUP"
 
