@@ -49,11 +49,7 @@ func physics_process(delta: float):
 #		var main_menu_path = "res://src/ui/main_menu/Menu.tscn"
 #		var _ret = get_tree().change_scene(main_menu_path)
 	
-	# Debug Reset
-	if Input.is_action_pressed("reset"):
-		GlobalFlags.IS_GAME_OVER = false
-		var _ret = get_tree().reload_current_scene()
-	elif Input.is_action_pressed("quit"):
+	if Input.is_action_pressed("quit"):
 		get_tree().quit()
 	
 	# DEBUG
