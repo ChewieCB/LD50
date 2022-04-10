@@ -56,6 +56,7 @@ func game_ticker_to_filtered():
 func menu_to_game():
 	animation_player.play("crossfade_menu_to_game")
 	yield(animation_player, "animation_finished")
+	menu_music_player.stop()
 	game_music_player_normal.play()
 	game_music_player_filtered.play()
 	game_music_player_ticker.play()
