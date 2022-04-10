@@ -1312,6 +1312,7 @@ autowrap = true
 clip_text = true
 
 [node name="ZorgEmailContainer" type="CenterContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 906.0
 margin_bottom = 234.0
 
@@ -1407,6 +1408,7 @@ autowrap = true
 clip_text = true
 
 [node name="ContinueContainer" type="CenterContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 238.0
 margin_right = 906.0
 margin_bottom = 258.0
