@@ -8,14 +8,26 @@ export (AudioStreamSample) var breakthrough_sfx
 export (AudioStreamSample) var engine_sfx
 export (AudioStreamSample) var top_speed_sfx
 export (AudioStreamSample) var decel_sfx
-export (AudioStreamSample) var drift_sfx
-export (AudioStreamSample) var crash_sfx
+export (AudioStreamSample) var drift_sfx_1
+export (AudioStreamSample) var drift_sfx_2
+export (AudioStreamSample) var drift_sfx_3
+export (AudioStreamSample) var drift_piston_sfx
+export (AudioStreamSample) var crash_sfx_1
+export (AudioStreamSample) var crash_sfx_2
+export (AudioStreamSample) var crash_sfx_3
+export (AudioStreamSample) var crash_sfx_4
+export (AudioStreamSample) var crash_bad_sfx
+export (AudioStreamSample) var engine_stop_sfx
+export (AudioStreamSample) var engine_stutter_sfx
+export (AudioStreamSample) var death_sfx_1
+export (AudioStreamSample) var death_sfx_2
 
 enum States { 
 	# Null state to stop looping samples
 	IDLE,
 	# Player SFX States
-	ACCELERATING, TOP_SPEED, DECELERATING, DRIFTING, CRASH
+	ACCELERATING, TOP_SPEED, DECELERATING, DRIFTING, CRASH,
+	DEATH
 	}
 
 enum PlayerIDs {
@@ -24,7 +36,9 @@ enum PlayerIDs {
 	DECEL,
 	DRIFT,
 	CRASH,
-	BREAKTHROUGH
+	BREAKTHROUGH,
+	DEATH,
+	AUX
 }
 
 onready var tween = $Tween
@@ -36,6 +50,8 @@ var decel_player
 var drift_player
 var crash_player
 var breakthrough_player
+var death_player
+var aux_player
 
 
 func _ready():
@@ -57,14 +73,21 @@ func _ready():
 	decel_player.volume_db = -80
 	
 	drift_player = sfx_players[PlayerIDs.DRIFT]
-	drift_player.stream = drift_sfx
-	drift_player.volume_db = -22
+	drift_player.stream = random_drift_sfx()
+	drift_player.volume_db = -20
 	
 	crash_player = sfx_players[PlayerIDs.CRASH]
-	crash_player.stream = crash_sfx
+	crash_player.stream = random_crash_sfx()
 	
 	breakthrough_player = sfx_players[PlayerIDs.BREAKTHROUGH]
 	breakthrough_player.stream = breakthrough_sfx
+	
+	death_player = sfx_players[PlayerIDs.DEATH]
+	death_player.stream = random_death_sfx()
+	decel_player.volume_db = -30
+	
+	aux_player = sfx_players[PlayerIDs.AUX]
+	aux_player.volume_db = -20
 
 
 #func _physics_process(_delta):
@@ -176,8 +199,13 @@ func play_audio(state):
 			engine_player.volume_db = -16
 			engine_player.pitch_scale = 1.5
 		States.CRASH:
+			# Impact noise
+			crash_player.stream = random_crash_sfx()
 			crash_player.play()
-			# TODO - add engine stutter to start up
+			# Engine failure noise
+			aux_player.stream = engine_stop_sfx
+			aux_player.play()
+			#
 			tween.interpolate_property(
 				engine_player,
 				"volume_db",
@@ -207,10 +235,31 @@ func play_audio(state):
 			)
 			tween.start()
 			yield(tween, "tween_all_completed")
-			engine_player.volume_db = -20
-			engine_player.pitch_scale = 0.5
+			# Reset engine noise
+			tween.interpolate_property(
+				engine_player,
+				"volume_db",
+				engine_player.volume_db,
+				-20,
+				0.15,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT
+			)
+			tween.interpolate_property(
+				engine_player,
+				"pitch_scale",
+				engine_player.pitch_scale,
+				0.5,
+				0.15,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT
+			)
+			tween.start()
+			yield(tween, "tween_all_completed")
 		States.DRIFTING:
 			drift_player.play()
+			aux_player.stream = drift_piston_sfx
+			aux_player.play()
 			tween.interpolate_property(
 				engine_player,
 				"volume_db",
@@ -239,16 +288,61 @@ func play_audio(state):
 				Tween.EASE_OUT
 			)
 			tween.start()
+		States.DEATH:
+			death_player.play()
+			tween.interpolate_property(
+				engine_player,
+				"volume_db",
+				engine_player.volume_db,
+				-70,
+				0.3,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT
+			)
+			tween.interpolate_property(
+				engine_player,
+				"pitch_scale",
+				engine_player.pitch_scale,
+				0.5,
+				0.3,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT
+			)
+			tween.interpolate_property(
+				accel_player,
+				"volume_db",
+				accel_player.volume_db,
+				-80,
+				0.6,
+				Tween.TRANS_SINE,
+				Tween.EASE_OUT
+			)
+			tween.start()
+			yield(tween, "tween_all_completed")
 
 
-#func transition_walking_sfx(speed):
-#	match speed:
-#		0:
-#			transition_to(States.MOVE_SLOW, 0)
-#		1:
-#			transition_to(States.MOVE_MEDIUM, 0)
-#		2:
-#			transition_to(States.MOVE_FAST, 0)
+func random_drift_sfx():
+	var _samples = [drift_sfx_1, drift_sfx_2, drift_sfx_3]
+	_samples.erase(drift_player.stream)
+	var rand_idx = floor(rand_range(0, _samples.size()))
+	
+	return _samples[rand_idx]
+
+
+func random_crash_sfx():
+	var _samples = [crash_sfx_1, crash_sfx_2, crash_sfx_3, crash_sfx_4]
+	_samples.erase(crash_player.stream)
+	var rand_idx = floor(rand_range(0, _samples.size()))
+	
+	return _samples[rand_idx]
+
+
+func random_death_sfx():
+	var _samples = [death_sfx_1, death_sfx_2]
+	_samples.erase(death_player.stream)
+	var rand_idx = floor(rand_range(0, _samples.size()))
+	
+	return _samples[rand_idx]
 
 
 func stop_audio():

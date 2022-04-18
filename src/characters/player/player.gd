@@ -12,5 +12,12 @@ func _ready():
 	state_label = $StateLabel
 	animation_player.play("idle")
 	
+	CountdownTimer.connect("game_over", self, "death")
+	
 	CountdownTimer.run_start_time = OS.get_unix_time()
 	GlobalFlags.IS_PLAYER_CONTROLLABLE = true
+
+
+func death():
+	state_machine.transition_to("Movement/Death")
+

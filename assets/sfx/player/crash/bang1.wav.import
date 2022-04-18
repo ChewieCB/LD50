@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bang1.wav-9b2d9f85cf18501654c891b4a35b35aa.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/crash/bang1.wav"
+dest_files=[ "res://.import/bang1.wav-9b2d9f85cf18501654c891b4a35b35aa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

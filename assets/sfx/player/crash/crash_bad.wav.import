@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/crash_bad.wav-5c4b7a073dc5a2cfe29e3c07de47fea1.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/crash/crash_bad.wav"
+dest_files=[ "res://.import/crash_bad.wav-5c4b7a073dc5a2cfe29e3c07de47fea1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
