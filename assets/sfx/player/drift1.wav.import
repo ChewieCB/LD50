@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/drift1.wav-2ed67a72d761006f899a6dc72850d307.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/drift1.wav"
+dest_files=[ "res://.import/drift1.wav-2ed67a72d761006f899a6dc72850d307.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -35,10 +35,6 @@ var input_direction = Vector2.ZERO
 var steer_angle
 
 
-#func enter(_msg: Dictionary = {}):
-#	yield(_actor.fadeout.animation_player, "animation_finished")
-
-
 func physics_process(delta: float):
 	# TODO - re-implement this "return to menu" signal behaviour
 #	if Input.is_action_just_pressed("ui_cancel"):
@@ -177,6 +173,4 @@ func calculate_steering(delta):
 		 velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 	
 	_actor.rotation = new_heading.angle()
-
-
 

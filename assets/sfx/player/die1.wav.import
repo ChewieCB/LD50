@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/die1.wav-5d0a2a96049e14cc38a5b25945a4cbce.sample"
+
+[deps]
+
+source_file="res://assets/sfx/player/die1.wav"
+dest_files=[ "res://.import/die1.wav-5d0a2a96049e14cc38a5b25945a4cbce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0
